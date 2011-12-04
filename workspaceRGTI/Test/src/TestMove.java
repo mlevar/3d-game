@@ -80,6 +80,31 @@ public class TestMove extends Test {
 		GL11.glPopMatrix();
 	}
 
+	protected boolean checkPlayerCollision(float newX, float newZ) {
+		//float x = camera.getPosition().x;
+		//float z = camera.getPosition().z;
+		//System.out.print(x + " -- ");
+		//System.out.println(z + "--");
+		//System.out.println(38-z);
+		
+		if(Math.abs(270 - newZ) < 0.3) {
+			return true;
+			
+		}else if(Math.abs(-7 - newZ) < 0.3) {
+			return true;
+		}else if(Math.abs(44 - newX) < 0.3) {
+			
+			return true;
+		}else if(Math.abs(-44 - newX) < 0.3) {
+			
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
 	/**
 	 * Processes Keyboard and Mouse input and spawns actions
 	 */
@@ -155,6 +180,7 @@ public class TestMove extends Test {
 		// we times the movementSpeed with dt this is a time scale
 		// so if its a slow frame u move more then a fast frame
 		// so on a slow computer you move just as fast as on a fast computer
+		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W))// move forward
 		{
 			camera.walkForward(movementSpeed * dt);
@@ -171,7 +197,35 @@ public class TestMove extends Test {
 		{
 			camera.strafeRight(movementSpeed * dt);
 		}
+		
+		
+		/* detekcije trkov igralca in mej okolja
+		if (Keyboard.isKeyDown(Keyboard.KEY_W))// move forward
+		{
+			if(!checkPlayerCollision(camera.tryXForward(movementSpeed * dt), camera.tryZForward(movementSpeed*dt))) {
+				camera.walkForward(movementSpeed * dt);
+			}
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_S))// move backwards
+		{
+			if(!checkPlayerCollision(camera.tryXBackwards(movementSpeed * dt), camera.tryZBackwards(movementSpeed*dt))) {
+				camera.walkBackwards(movementSpeed * dt);
+			}
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_A))// strafe left
+		{
+			if(!checkPlayerCollision(camera.tryXLeft(movementSpeed * dt), camera.tryZLeft(movementSpeed*dt))) {
+				camera.strafeLeft(movementSpeed * dt);
+			}
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_D))// strafe right
+		{
+			if(!checkPlayerCollision(camera.tryXRight(movementSpeed * dt), camera.tryZRight(movementSpeed*dt))) {
+				camera.strafeRight(movementSpeed * dt);
+			}
+		}
 
+		*/
 		// set the modelview matrix back to the identity
 
 		// you would draw your scene here.
