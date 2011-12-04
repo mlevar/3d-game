@@ -1,0 +1,39 @@
+# Alias Wavefront MTL File Exported from SketchUp
+# with OBJexporter (c) 2010-2011 TIG
+# Made for 'kura.obj'
+
+newmtl Default_Material
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+
+newmtl Material1
+Ka 0.000000 0.000000 0.000000
+Kd 0.909804 0.913725 0.894118
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd kura_Textures/Material1.PNG
+
+newmtl Material2
+Ka 0.000000 0.000000 0.000000
+Kd 0.823529 0.086275 0.203922
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd kura_Textures/Material2.PNG
+
+newmtl Material3
+Ka 0.000000 0.000000 0.000000
+Kd 0.890196 0.611765 0.047059
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd kura_Textures/Material3.PNG
+
+newmtl Material4
+Ka 0.000000 0.000000 0.000000
+Kd 0.007843 0.007843 0.007843
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd kura_Textures/Material4.PNG
+
+#EOF

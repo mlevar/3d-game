@@ -1,0 +1,11 @@
+public class Kura extends Enemy {
+
+	private Obj3D model;
+	private float speed = 5f;
+	private Vector3f direction=null;
+	
+	public Kura(float x, float y, float z, float r) {
+		super(x, y, z, r);
+
+	}
+}

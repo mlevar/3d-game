@@ -1,0 +1,45 @@
+# Alias Wavefront MTL File Exported from SketchUp
+# with OBJexporter (c) 2010-2011 TIG
+# Made for 'merjasec.obj'
+
+newmtl Default_Material
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+
+newmtl Material1
+Ka 0.000000 0.000000 0.000000
+Kd 0.545098 0.400000 0.207843
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd merjasec_Textures/Material1.PNG
+
+newmtl 0136_Charcoal
+Ka 0.000000 0.000000 0.000000
+Kd 0.137255 0.137255 0.137255
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+
+newmtl Material2
+Ka 0.000000 0.000000 0.000000
+Kd 0.772549 0.709804 0.631373
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd merjasec_Textures/Material2.PNG
+
+newmtl Material3
+Ka 0.000000 0.000000 0.000000
+Kd 0.576471 0.058824 0.141176
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd merjasec_Textures/Material3.PNG
+
+newmtl Material4
+Ka 0.000000 0.000000 0.000000
+Kd 0.007843 0.007843 0.007843
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd merjasec_Textures/Material4.PNG
+
+#EOF

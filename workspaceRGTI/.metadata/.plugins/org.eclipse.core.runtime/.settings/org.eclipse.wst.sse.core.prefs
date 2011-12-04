@@ -1,0 +1,3 @@
+#Sat Dec 03 18:14:37 CET 2011
+task-tag-projects-already-scanned=01 BaseWindow,02 ShowPyramid,03 DoTransforms,04 Refactored,05 Shading,06 ComplexModel,07 Animation,08 ThreadedAnimation&CollisionDetection,09 Blending,10 AntiAliasing,11 Text&HUD,12 Camera,13 ParticleSystems,14 GLSL,15 VBO,Game,Test,lwjgl-2.8.1
+eclipse.preferences.version=1
