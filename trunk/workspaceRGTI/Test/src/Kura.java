@@ -12,14 +12,15 @@ public class Kura  {
 	private boolean moving;
 	public float radius = 0f;
 
-	public Kura(float x, float y, float z, float r) {
+	public Kura(float x, float y, float z, float r, Obj3D kModel) {
 
 		position = new Vector3f(x, y, z);
 		radius=r;
 		alive=true;
 		moving=true;
 		
-		model = new Obj3D("kura.obj");
+		//model = new Obj3D("kura.obj");
+		model = kModel;
 		model.setPosition(position.x,position.y,position.z);
 		model.setRotation(0, 0, 0);
 		model.setScaling(scale, scale, scale);
@@ -29,6 +30,7 @@ public class Kura  {
 	public void move() {
 		if (position.x > direction.x) {
 			position.x -= speed*0.1;
+			
 		} else if (position.x < direction.x) {
 			position.x += speed*0.1;
 		}
