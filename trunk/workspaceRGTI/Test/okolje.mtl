@@ -1,0 +1,67 @@
+# Alias Wavefront MTL File Exported from SketchUp
+# with OBJexporter (c) 2010-2011 TIG
+# Made for 'okolje.obj'
+
+newmtl Default_Material
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+
+newmtl Fencing_Weathered
+Ka 0.000000 0.000000 0.000000
+Kd 0.435294 0.411765 0.376471
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Fencing_Weathered.PNG
+
+newmtl Stone_Coursed_Rough
+Ka 0.000000 0.000000 0.000000
+Kd 0.647059 0.627451 0.509804
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Stone_Coursed_Rough.PNG
+
+newmtl Groundcover_RiverRock_4inch
+Ka 0.000000 0.000000 0.000000
+Kd 0.568627 0.494118 0.427451
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Groundcover_RiverRock_4inch.PNG
+
+newmtl Material2
+Ka 0.000000 0.000000 0.000000
+Kd 0.325490 0.415686 0.090196
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material2.PNG
+
+newmtl Material3
+Ka 0.000000 0.000000 0.000000
+Kd 0.282353 0.466667 0.109804
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material3.PNG
+
+newmtl Material9
+Ka 0.000000 0.000000 0.000000
+Kd 0.309804 0.309804 0.337255
+Ks 0.000000 0.000000 0.000000
+d 0.790000
+map_Kd okolje_Textures/Material9.PNG
+
+newmtl Stone_Masonry_Multi
+Ka 0.000000 0.000000 0.000000
+Kd 0.713725 0.686275 0.643137
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Stone_Masonry_Multi.PNG
+
+newmtl Brick_Tumbled
+Ka 0.000000 0.000000 0.000000
+Kd 0.529412 0.517647 0.517647
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Brick_Tumbled.PNG
+
+#EOF
