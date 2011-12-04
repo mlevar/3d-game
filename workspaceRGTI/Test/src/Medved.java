@@ -12,14 +12,14 @@ public class Medved  {
 	private boolean moving;
 	public float radius = 0f;
 
-	public Medved(float x, float y, float z, float r) {
+	public Medved(float x, float y, float z, float r, Obj3D mModel) {
 
 		position = new Vector3f(x, y, z);
 		radius=r;
 		alive=true;
 		moving=true;
 		
-		model = new Obj3D("medved.obj");
+		model = mModel;
 		model.setPosition(position.x,position.y,position.z);
 		model.setRotation(0, 0, 0);
 		model.setScaling(scale, scale, scale);
