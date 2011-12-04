@@ -7,7 +7,7 @@ public class TestMove extends Test {
 	float posX = 0, posY = 0, rotX = 0, rotY = 0, scale = 1, rotZ = 0,
 			posZ = 0;
 
-	Player camera = new Player(0, 1f, 0, 1);
+	Player camera = new Player(0, 1.3f, 0, 1);
 
 	float dx = 0.0f;
 	float dy = 0.0f;
