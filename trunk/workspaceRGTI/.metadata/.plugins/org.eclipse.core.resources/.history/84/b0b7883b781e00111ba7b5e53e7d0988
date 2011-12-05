@@ -1,8 +1,0 @@
-
-public class Kura extends Enemy {
-
-	public Kura(float x,float y,float z,float r)
-	{
-		
-	}
-}
