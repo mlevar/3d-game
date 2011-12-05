@@ -45,19 +45,20 @@ public class Test extends BaseWindow {
 				GL11.GL_MODULATE);
 
 		okolje = new Okolje(0, 0, 0);
-
+/*
 		kuraModel = new Obj3D("kura.obj");
 		merjasecModel = new Obj3D("merjasec.obj");
 		medvedModel = new Obj3D("medved.obj");
-		kure = new Kura[6];
+		*/
+		kure = new Kura[0];
 		for (int i=0;i<kure.length;i++) {
 			kure[i]= new Kura(-20+i*20f, -3f, -200f, 1f, kuraModel);
 		}
-		merjasci = new Merjasec[5];
+		merjasci = new Merjasec[0];
 		for (int i=0;i<merjasci.length;i++) {
 			merjasci[i]= new Merjasec(-20+i*40f, -3f, -220f, 1f, merjasecModel);
 		}
-		medvedi = new Medved[3];
+		medvedi = new Medved[0];
 		for (int i=0;i<medvedi.length;i++) {
 			medvedi[i]= new Medved(0+i*30, -3f, -250f, 1f, medvedModel);
 		}
@@ -114,7 +115,7 @@ public class Test extends BaseWindow {
 
 		okolje.render();
 
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, m_Textures.get(0));
+		//GL11.glBindTexture(GL11.GL_TEXTURE_2D, m_Textures.get(0));
 		/*
 		 * // space GL11.glBegin(GL11.GL_QUADS); GL11.glColor3f(0.5f, 0.2f,
 		 * 0.1f); GL11.glTexCoord2f(0.0f, 0.0f); GL11.glVertex3f(-58.0f, -3.0f,

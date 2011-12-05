@@ -6,19 +6,37 @@ public class Player {
 	// First Person Camera Controller
 	// http://www.lloydgoodall.com/tutorials/first-person-camera-control-with-lwjgl/
 
+	Obj3Dpivot hand;
+	Obj3Dpivot sword;
+
 	// 3d vector to store the camera's position in
-	private Vector3f position = null;
+	public Vector3f position = null;
+	public Vector3f offset = new Vector3f(0.3f,-2.7f,-1f );
 	// the rotation around the Y axis of the camera
 	private float yaw = 0.0f;
 	// the rotation around the X axis of the camera
 	private float pitch = 0.0f;
-	
+
 	public float radius = 0f;
 
 	public Player(float x, float y, float z, float r) {
 		// instantiate position Vector3f to the x y z params.
 		position = new Vector3f(x, y, z);
 		radius = r;
+
+		hand = new Obj3Dpivot("hand.obj");
+		hand.setPosition(position.x , position.y -2.5f, position.z );
+		hand.setPivot(offset.x,offset.y,offset.z);
+		hand.setRotation(pitch, yaw, 0);
+		hand.setScaling(1f, 1f, 1f);
+		//hand.render3D();
+
+		sword = new Obj3Dpivot("mec.obj");
+		sword.setPosition(position.x  , position.y-2.5f, position.z );
+		sword.setPivot(offset.x,offset.y,offset.z);
+		sword.setRotation(pitch, yaw+90f, 0);
+		sword.setScaling(1f, 1f, 1f);
+		//sword.render3D();
 	}
 
 	// increment the camera's current yaw rotation
@@ -38,11 +56,11 @@ public class Player {
 		position.x -= distance * (float) Math.sin(Math.toRadians(yaw));
 		position.z += distance * (float) Math.cos(Math.toRadians(yaw));
 	}
-	
+
 	public float tryXForward(float distance) {
 		return position.x - (distance * (float) Math.sin(Math.toRadians(yaw)));
 	}
-	
+
 	public float tryZForward(float distance) {
 		return position.z + (distance * (float) Math.cos(Math.toRadians(yaw)));
 	}
@@ -52,11 +70,11 @@ public class Player {
 		position.x += distance * (float) Math.sin(Math.toRadians(yaw));
 		position.z -= distance * (float) Math.cos(Math.toRadians(yaw));
 	}
-	
+
 	public float tryXBackwards(float distance) {
 		return position.x + (distance * (float) Math.sin(Math.toRadians(yaw)));
 	}
-	
+
 	public float tryZBackwards(float distance) {
 		return position.z - (distance * (float) Math.cos(Math.toRadians(yaw)));
 	}
@@ -66,13 +84,15 @@ public class Player {
 		position.x -= distance * (float) Math.sin(Math.toRadians(yaw - 90));
 		position.z += distance * (float) Math.cos(Math.toRadians(yaw - 90));
 	}
-	
+
 	public float tryXLeft(float distance) {
-		return position.x - (distance * (float) Math.sin(Math.toRadians(yaw - 90)));
+		return position.x
+				- (distance * (float) Math.sin(Math.toRadians(yaw - 90)));
 	}
-	
+
 	public float tryZLeft(float distance) {
-		return position.z + (distance * (float) Math.cos(Math.toRadians(yaw - 90)));
+		return position.z
+				+ (distance * (float) Math.cos(Math.toRadians(yaw - 90)));
 	}
 
 	// strafes the camera right relitive to its current rotation (yaw)
@@ -80,15 +100,17 @@ public class Player {
 		position.x -= distance * (float) Math.sin(Math.toRadians(yaw + 90));
 		position.z += distance * (float) Math.cos(Math.toRadians(yaw + 90));
 	}
-	
+
 	public float tryXRight(float distance) {
-		return position.x - (distance * (float) Math.sin(Math.toRadians(yaw + 90)));
+		return position.x
+				- (distance * (float) Math.sin(Math.toRadians(yaw + 90)));
 	}
-	
+
 	public float tryZRight(float distance) {
-		return position.z + (distance * (float) Math.cos(Math.toRadians(yaw + 90)));
+		return position.z
+				+ (distance * (float) Math.cos(Math.toRadians(yaw + 90)));
 	}
-	
+
 	public Vector3f getPosition() {
 		return position;
 	}
@@ -102,5 +124,20 @@ public class Player {
 		GL11.glRotatef(yaw, 0.0f, 1.0f, 0.0f);
 		// translate to the position vector's location
 		GL11.glTranslatef(position.x, position.y, position.z);
+
+	}
+	public void render(){
+		hand.setPosition(-position.x+0.3f ,position.y -2.7f, -position.z -1f);
+		hand.setPivot(offset.x,offset.y,offset.z);
+		hand.setRotation(pitch, -yaw, 0);
+		hand.setScaling(1f, 1f, 1f);
+		hand.render3D();
+
+		sword.setPosition(-position.x+0.3f  , position.y-2.7f, -position.z -1f);
+		sword.setPivot(offset.x,offset.y,offset.z);
+		sword.setRotation(pitch, -yaw, 0);
+		sword.setScaling(1f, 1f, 1f);
+		sword.render3D();
+	
 	}
 }
