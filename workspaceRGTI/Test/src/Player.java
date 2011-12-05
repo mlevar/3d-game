@@ -25,17 +25,17 @@ public class Player {
 		radius = r;
 
 		hand = new Obj3Dpivot("hand.obj");
-		hand.setPosition(position.x , position.y -2.5f, position.z );
-		hand.setPivot(offset.x,offset.y,offset.z);
-		hand.setRotation(pitch, yaw, 0);
-		hand.setScaling(1f, 1f, 1f);
+//		hand.setPosition(0.2f,-0.2f,-1.5f );
+//		hand.setPivot(offset.x,offset.y,offset.z);
+//		hand.setRotation(0, 0, 0);
+//		hand.setScaling(1f, 1f, 1f);
 		//hand.render3D();
 
 		sword = new Obj3Dpivot("mec.obj");
-		sword.setPosition(position.x  , position.y-2.5f, position.z );
-		sword.setPivot(offset.x,offset.y,offset.z);
-		sword.setRotation(pitch, yaw+90f, 0);
-		sword.setScaling(1f, 1f, 1f);
+//		hand.setPosition(0.2f,-0.2f,-1.5f );
+//		sword.setPivot(offset.x,offset.y,offset.z);
+//		sword.setRotation(0, 0, 0);
+//		sword.setScaling(1f, 1f, 1f);
 		//sword.render3D();
 	}
 
@@ -124,18 +124,24 @@ public class Player {
 		GL11.glRotatef(yaw, 0.0f, 1.0f, 0.0f);
 		// translate to the position vector's location
 		GL11.glTranslatef(position.x, position.y, position.z);
+		
+	
+	
+	
+		
 
 	}
 	public void render(){
-		hand.setPosition(-position.x+0.3f ,position.y -2.7f, -position.z -1f);
-		hand.setPivot(offset.x,offset.y,offset.z);
-		hand.setRotation(pitch, -yaw, 0);
+		GL11.glLoadIdentity();
+		hand.setPosition(0.2f,-0.2f,-1f );
+		//hand.setPivot(offset.x,offset.y,offset.z);
+//		hand.setRotation(pitch, 0, 0);
 		hand.setScaling(1f, 1f, 1f);
 		hand.render3D();
 
-		sword.setPosition(-position.x+0.3f  , position.y-2.7f, -position.z -1f);
-		sword.setPivot(offset.x,offset.y,offset.z);
-		sword.setRotation(pitch, -yaw, 0);
+		sword.setPosition(0.2f , -0.15f, -1f);
+		//sword.setPivot(offset.x,offset.y,offset.z);
+//		sword.setRotation(pitch, 0, 0);
 		sword.setScaling(1f, 1f, 1f);
 		sword.render3D();
 	
