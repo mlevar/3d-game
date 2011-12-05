@@ -14,11 +14,14 @@ public class Obj3Dpivot extends Model3D {
 			System.err.println(e.getMessage());
 		}
 	}
-
+	
+	
+	
 	public void setPivot(float p_X, float p_Y, float p_Z) {
 		m_pX = p_X;
 		m_pY = p_Y;
 		m_pZ = p_Z;
+
 	}
 
 	public void render3D() {

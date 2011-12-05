@@ -3,6 +3,8 @@ import java.nio.IntBuffer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
+import org.ode4j.ode.*;
+
 public class Test extends BaseWindow {
 
 	Okolje okolje;
