@@ -160,7 +160,9 @@ public class TestMove extends Test {
 			camera.strafeRight(movementSpeed * dt);
 		}
 		
-		
+		if(Mouse.isButtonDown(0)){
+			camera.hit=true;
+		}
 
 
 		super.processInput();
