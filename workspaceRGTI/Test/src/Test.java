@@ -5,10 +5,9 @@ import org.lwjgl.util.glu.GLU;
 
 public class Test extends BaseWindow {
 
-	Obj3D okolje;
-	Obj3D skydome;
+	Okolje okolje;
 	Kura[] kure;
-	Merjasec[]merjasci;
+	Merjasec[] merjasci;
 	Medved[] medvedi;
 	
 	Obj3D kuraModel;
@@ -45,21 +44,20 @@ public class Test extends BaseWindow {
 		GL11.glTexEnvf(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE,
 				GL11.GL_MODULATE);
 
-		okolje = new Obj3D("okolje.obj");
-		skydome = new Obj3D("skydome.obj");
+		okolje = new Okolje(0, 0, 0);
+
 		kuraModel = new Obj3D("kura.obj");
 		merjasecModel = new Obj3D("merjasec.obj");
 		medvedModel = new Obj3D("medved.obj");
-		
-		kure = new Kura[3];
+		kure = new Kura[6];
 		for (int i=0;i<kure.length;i++) {
 			kure[i]= new Kura(-20+i*20f, -3f, -200f, 1f, kuraModel);
 		}
-		merjasci = new Merjasec[2];
+		merjasci = new Merjasec[5];
 		for (int i=0;i<merjasci.length;i++) {
 			merjasci[i]= new Merjasec(-20+i*40f, -3f, -220f, 1f, merjasecModel);
 		}
-		medvedi = new Medved[1];
+		medvedi = new Medved[3];
 		for (int i=0;i<medvedi.length;i++) {
 			medvedi[i]= new Medved(0+i*30, -3f, -250f, 1f, medvedModel);
 		}
@@ -103,27 +101,18 @@ public class Test extends BaseWindow {
 		// GL11.glVertex3f( 0.0f, -0.5f, -3.0f); // lower front vertex
 
 		GL11.glColor3f(1, 1, 1);
-		float s = 1.5f;
 
-		skydome.setPosition(-215.0f * s, -100.0f * s, +70.0f * s);
-		skydome.setRotation(0, 0, 0);
-		skydome.setScaling(1f * s, 1f * s, 1f * s);
-		skydome.render3D();
-
-		okolje.setPosition(-40.0f, -3.0f, +40.0f);
-		okolje.setRotation(0, 0, 0);
-		okolje.setScaling(1f, 1f, 1f);
-		okolje.render3D();
-
-		for (int i=0;i<kure.length;i++) {
+		for (int i = 0; i < kure.length; i++) {
 			kure[i].move();
 		}
-		for (int i=0;i<merjasci.length;i++) {
+		for (int i = 0; i < merjasci.length; i++) {
 			merjasci[i].move();
 		}
-		for (int i=0;i<medvedi.length;i++) {
+		for (int i = 0; i < medvedi.length; i++) {
 			medvedi[i].move();
 		}
+
+		okolje.render();
 
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, m_Textures.get(0));
 		/*
@@ -157,53 +146,34 @@ public class Test extends BaseWindow {
 		 * GL11.glVertex3f(-58.0f, 13.0f, 32.0f); GL11.glTexCoord2f(0.0f, 1.0f);
 		 * GL11.glVertex3f(58.0f, 13.0f, 32.0f); GL11.glTexCoord2f(1.0f, 1.0f);
 		 * GL11.glVertex3f(58.0f, -3.0f, 32.0f);
+		 * 
+		 * // cube GL11.glColor3f(0, 1, 1); GL11.glTexCoord2f(0.0f, 0.0f);
+		 * GL11.glVertex3f(-4.0f, -3.0f, -12.0f); GL11.glTexCoord2f(0.0f, 1.0f);
+		 * GL11.glVertex3f(4.0f, -3.0f, -12.0f); GL11.glTexCoord2f(1.0f, 0.0f);
+		 * GL11.glVertex3f(4.0f, 3.0f, -12.0f); GL11.glTexCoord2f(1.0f, 1.0f);
+		 * GL11.glVertex3f(-4.0f, 3.0f, -12.0f); GL11.glColor3f(0, 1, 1);
+		 * GL11.glVertex3f(-4.0f, 3.0f, -12.0f); GL11.glVertex3f(4.0f, 3.0f,
+		 * -12.0f); GL11.glVertex3f(4.0f, -3.0f, -12.0f); GL11.glVertex3f(-4.0f,
+		 * -3.0f, -12.0f);
+		 * 
+		 * GL11.glColor3f(1, 1, 0); GL11.glTexCoord2f(0.0f, 0.0f);
+		 * GL11.glVertex3f(-4.0f, -3.0f, -4.0f); GL11.glTexCoord2f(0.0f, 1.0f);
+		 * GL11.glVertex3f(-4.0f, -3.0f, -12.0f); GL11.glTexCoord2f(1.0f, 0.0f);
+		 * GL11.glVertex3f(-4.0f, 3.0f, -12.0f); GL11.glTexCoord2f(1.0f, 1.0f);
+		 * GL11.glVertex3f(-4.0f, 3.0f, -4.0f); GL11.glColor3f(1, 1, 0);
+		 * GL11.glVertex3f(-4.0f, 3.0f, -4.0f); GL11.glVertex3f(-4.0f, 3.0f,
+		 * -12.0f); GL11.glVertex3f(-4.0f, -3.0f, -12.0f);
+		 * GL11.glVertex3f(-4.0f, -3.0f, -4.0f);
+		 * 
+		 * GL11.glColor3f(0, 1, 0); GL11.glTexCoord2f(0.0f, 0.0f);
+		 * GL11.glVertex3f(4.0f, -3.0f, -4.0f); GL11.glTexCoord2f(0.0f, 1.0f);
+		 * GL11.glVertex3f(4.0f, 3.0f, -4.0f); GL11.glTexCoord2f(1.0f, 0.0f);
+		 * GL11.glVertex3f(4.0f, 3.0f, -12.0f); GL11.glTexCoord2f(1.0f, 1.0f);
+		 * GL11.glVertex3f(4.0f, -3.0f, -12.0f); GL11.glColor3f(0, 1, 0);
+		 * GL11.glVertex3f(4.0f, -3.0f, -12.0f); GL11.glVertex3f(4.0f, 3.0f,
+		 * -12.0f); GL11.glVertex3f(4.0f, 3.0f, -4.0f); GL11.glVertex3f(4.0f,
+		 * -3.0f, -4.0f);
 		 */
-		// cube
-		GL11.glColor3f(0, 1, 1);
-		GL11.glTexCoord2f(0.0f, 0.0f);
-		GL11.glVertex3f(-4.0f, -3.0f, -12.0f);
-		GL11.glTexCoord2f(0.0f, 1.0f);
-		GL11.glVertex3f(4.0f, -3.0f, -12.0f);
-		GL11.glTexCoord2f(1.0f, 0.0f);
-		GL11.glVertex3f(4.0f, 3.0f, -12.0f);
-		GL11.glTexCoord2f(1.0f, 1.0f);
-		GL11.glVertex3f(-4.0f, 3.0f, -12.0f);
-		GL11.glColor3f(0, 1, 1);
-		GL11.glVertex3f(-4.0f, 3.0f, -12.0f);
-		GL11.glVertex3f(4.0f, 3.0f, -12.0f);
-		GL11.glVertex3f(4.0f, -3.0f, -12.0f);
-		GL11.glVertex3f(-4.0f, -3.0f, -12.0f);
-
-		GL11.glColor3f(1, 1, 0);
-		GL11.glTexCoord2f(0.0f, 0.0f);
-		GL11.glVertex3f(-4.0f, -3.0f, -4.0f);
-		GL11.glTexCoord2f(0.0f, 1.0f);
-		GL11.glVertex3f(-4.0f, -3.0f, -12.0f);
-		GL11.glTexCoord2f(1.0f, 0.0f);
-		GL11.glVertex3f(-4.0f, 3.0f, -12.0f);
-		GL11.glTexCoord2f(1.0f, 1.0f);
-		GL11.glVertex3f(-4.0f, 3.0f, -4.0f);
-		GL11.glColor3f(1, 1, 0);
-		GL11.glVertex3f(-4.0f, 3.0f, -4.0f);
-		GL11.glVertex3f(-4.0f, 3.0f, -12.0f);
-		GL11.glVertex3f(-4.0f, -3.0f, -12.0f);
-		GL11.glVertex3f(-4.0f, -3.0f, -4.0f);
-
-		GL11.glColor3f(0, 1, 0);
-		GL11.glTexCoord2f(0.0f, 0.0f);
-		GL11.glVertex3f(4.0f, -3.0f, -4.0f);
-		GL11.glTexCoord2f(0.0f, 1.0f);
-		GL11.glVertex3f(4.0f, 3.0f, -4.0f);
-		GL11.glTexCoord2f(1.0f, 0.0f);
-		GL11.glVertex3f(4.0f, 3.0f, -12.0f);
-		GL11.glTexCoord2f(1.0f, 1.0f);
-		GL11.glVertex3f(4.0f, -3.0f, -12.0f);
-		GL11.glColor3f(0, 1, 0);
-		GL11.glVertex3f(4.0f, -3.0f, -12.0f);
-		GL11.glVertex3f(4.0f, 3.0f, -12.0f);
-		GL11.glVertex3f(4.0f, 3.0f, -4.0f);
-		GL11.glVertex3f(4.0f, -3.0f, -4.0f);
-
 		GL11.glEnd();
 	}
 
