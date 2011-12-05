@@ -36,7 +36,7 @@ public class Test extends BaseWindow {
 		// GL11.glOrtho(-5,5,-5,5,1,30);
 		// perspective projection (45% FOV, 4/3 aspect, clipping near 1, far
 		// 30);
-		GLU.gluPerspective(45, 1024 / (float) 768, 0.1f, 900.0f);
+		GLU.gluPerspective(45, 1024 / (float) 768, 0.01f, 900.0f);
 
 		GL11.glShadeModel(GL11.GL_SMOOTH);
 
