@@ -17,6 +17,8 @@ public class TestMove extends Test {
 
 	float mouseSensitivity = 0.05f;
 	float movementSpeed = 10.0f; // move 10 units per second
+	
+	int wheel = Mouse.getDWheel();
 
 	
 
@@ -186,8 +188,18 @@ public class TestMove extends Test {
 		}
 		*/
 		
-		if(Mouse.isButtonDown(0)){
+		if(Mouse.isButtonDown(0) && !camera.lok){
 			camera.hit=true;
+		}
+		
+		if(Mouse.getDWheel() != wheel) {
+			wheel = Mouse.getDWheel();
+			
+			if(camera.lok) {
+				camera.lok = false;
+			}else {
+				camera.lok = true;
+			}
 		}
 		
 		//float xP = camera.getPosition().x;

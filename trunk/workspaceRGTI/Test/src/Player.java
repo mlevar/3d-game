@@ -8,8 +8,11 @@ public class Player {
 
 	Obj3Dpivot hand;
 	Obj3Dpivot sword;
+	Obj3Dpivot bow;
+	Obj3Dpivot arrow;
 	boolean hit = false;
 	int hitc = 0;
+	boolean lok = false;
 
 	// 3d vector to store the camera's position in
 	public Vector3f position = null;
@@ -33,7 +36,11 @@ public class Player {
 		// hand.setScaling(1f, 1f, 1f);
 		// hand.render3D();
 
+		//sword = new Obj3Dpivot("mec.obj");
 		sword = new Obj3Dpivot("mec.obj");
+		bow = new Obj3Dpivot("bow.obj");
+		arrow = new Obj3Dpivot("arrow.obj");
+		
 		// hand.setPosition(0.2f,-0.2f,-1.5f );
 		// sword.setPivot(offset.x,offset.y,offset.z);
 		// sword.setRotation(0, 0, 0);
@@ -131,7 +138,7 @@ public class Player {
 
 	public void render() {
 
-		if (hit || hitc > 0) {
+		if ((hit || hitc > 0) && !lok) {
 			GL11.glLoadIdentity();
 			hand.setPosition(0.2f, -0.2f, -1f);
 			hand.setRotation(0.5f * hitc, 0, 0);
@@ -149,7 +156,20 @@ public class Player {
 				hitc -= 3;
 			}
 			System.out.println(hitc);
-		} else {
+		}else if(lok) {
+			GL11.glLoadIdentity();
+			hand.setPosition(0.2f, -0.2f, -1f);
+			hand.setRotation(0, 0, 0);
+			hand.render3D();
+			
+			bow.setPosition(0.2f, -0.15f, -1f);
+			bow.setRotation(0, 0, 0);
+			bow.render3D();
+			
+			arrow.setPosition(0.2f, -0.11f, -1.6f);
+			arrow.setRotation(0, 0, 0);
+			arrow.render3D();
+		}else {
 			GL11.glLoadIdentity();
 			hand.setPosition(0.2f, -0.2f, -1f);
 			// hand.setPivot(offset.x,offset.y,offset.z);
