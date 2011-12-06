@@ -66,7 +66,7 @@ map_Kd okolje_Textures/Brick_Tumbled.PNG
 
 newmtl Material11
 Ka 0.000000 0.000000 0.000000
-Kd 0.498039 0.482353 0.462745
+Kd 0.494118 0.478431 0.462745
 Ks 0.000000 0.000000 0.000000
 d 1.000000
 map_Kd okolje_Textures/Material11.PNG
