@@ -47,20 +47,20 @@ public class Test extends BaseWindow {
 				GL11.GL_MODULATE);
 
 		okolje = new Okolje(0, 0, 0);
-/*
+
 		kuraModel = new Obj3D("kura.obj");
 		merjasecModel = new Obj3D("merjasec.obj");
 		medvedModel = new Obj3D("medved.obj");
-		*/
-		kure = new Kura[0];
+		
+		kure = new Kura[3];
 		for (int i=0;i<kure.length;i++) {
 			kure[i]= new Kura(-20+i*20f, -3f, -200f, 1f, kuraModel);
 		}
-		merjasci = new Merjasec[0];
+		merjasci = new Merjasec[2];
 		for (int i=0;i<merjasci.length;i++) {
 			merjasci[i]= new Merjasec(-20+i*40f, -3f, -220f, 1f, merjasecModel);
 		}
-		medvedi = new Medved[0];
+		medvedi = new Medved[1];
 		for (int i=0;i<medvedi.length;i++) {
 			medvedi[i]= new Medved(0+i*30, -3f, -250f, 1f, medvedModel);
 		}
