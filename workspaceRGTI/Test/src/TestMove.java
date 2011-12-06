@@ -92,13 +92,14 @@ public class TestMove extends Test {
 		
 	}
 
-	protected boolean checkPlayerCollision(float newX, float newZ) {
+	protected boolean checkPlayerCollision(double newX, double newZ) {
 		//float x = camera.getPosition().x;
 		//float z = camera.getPosition().z;
 		//System.out.print(x + " -- ");
 		//System.out.println(z + "--");
 		//System.out.println(38-z);
 		
+		/*
 		if(Math.abs(270 - newZ) < 0.3) {
 			return true;
 			
@@ -112,6 +113,22 @@ public class TestMove extends Test {
 			return true;
 		}
 		else {
+			return false;
+		}
+		*/
+		
+		
+		double zC1 = (newX * 8.61) - 384.78;
+		double zC2 = (newX * (-8.71)) - 388.78;
+		if(Math.abs(zC1 - newZ) < 0.4) {
+			return true; 
+		}else if(Math.abs(newZ - zC2) < 0.4) {
+			return true;
+		}else if(newZ < -7) {
+			return true;
+		}else if(newZ > 258) {
+			return true;
+		}else {
 			return false;
 		}
 	}
@@ -143,25 +160,66 @@ public class TestMove extends Test {
 		// so if its a slow frame u move more then a fast frame
 		// so on a slow computer you move just as fast as on a fast computer
 		
+		/*
+		float xP = camera.getPosition().x;
+		float zP = camera.getPosition().z;
+		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W))// move forward
 		{
 			camera.walkForward(movementSpeed * dt);
+			System.out.println("x: " + xP + " -- Z: " + zP);
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_S))// move backwards
 		{
 			camera.walkBackwards(movementSpeed * dt);
+			System.out.println("x: " + xP + " -- Z: " + zP);
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_A))// strafe left
 		{
 			camera.strafeLeft(movementSpeed * dt);
+			System.out.println("x: " + xP + " -- Z: " + zP);
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_D))// strafe right
 		{
 			camera.strafeRight(movementSpeed * dt);
+			System.out.println("x: " + xP + " -- Z: " + zP);
 		}
+		*/
 		
 		if(Mouse.isButtonDown(0)){
 			camera.hit=true;
+		}
+		
+		//float xP = camera.getPosition().x;
+		//float zP = camera.getPosition().z;
+		// detekcije trkov igralca in mej okolja
+		if (Keyboard.isKeyDown(Keyboard.KEY_W))// move forward
+		{
+			if(!checkPlayerCollision(camera.tryXForward(movementSpeed * dt), camera.tryZForward(movementSpeed*dt))) {
+				camera.walkForward(movementSpeed * dt);
+				
+			}
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_S))// move backwards
+		{
+			if(!checkPlayerCollision(camera.tryXBackwards(movementSpeed * dt), camera.tryZBackwards(movementSpeed*dt))) {
+				camera.walkBackwards(movementSpeed * dt);
+				
+			}
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_A))// strafe left
+		{
+			if(!checkPlayerCollision(camera.tryXLeft(movementSpeed * dt), camera.tryZLeft(movementSpeed*dt))) {
+				camera.strafeLeft(movementSpeed * dt);
+				
+			}
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_D))// strafe right
+		{
+			if(!checkPlayerCollision(camera.tryXRight(movementSpeed * dt), camera.tryZRight(movementSpeed*dt))) {
+				camera.strafeRight(movementSpeed * dt);
+				
+			}
 		}
 
 
