@@ -158,16 +158,19 @@ public class Player {
 			System.out.println(hitc);
 		}else if(lok) {
 			GL11.glLoadIdentity();
+			//hand.setPosition(0.2f, -0.2f, -1f);
 			hand.setPosition(0.2f, -0.2f, -1f);
 			hand.setRotation(0, 0, 0);
 			hand.render3D();
 			
-			bow.setPosition(0.2f, -0.15f, -1f);
-			bow.setRotation(0, 0, 0);
+			//bow.setPosition(0.2f, -0.15f, -1f);
+			bow.setPosition(0.055f, -0.15f, -1.045f);
+			bow.setRotation(0, -7, 0);
 			bow.render3D();
 			
-			arrow.setPosition(0.2f, -0.11f, -1.6f);
-			arrow.setRotation(0, 0, 0);
+			//arrow.setPosition(0.2f, -0.11f, -1.6f);
+			arrow.setPosition(0.055f, -0.11f, -1.645f);
+			arrow.setRotation(0, -7, 0);
 			arrow.render3D();
 		}else {
 			GL11.glLoadIdentity();
