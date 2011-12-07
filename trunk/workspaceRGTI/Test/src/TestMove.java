@@ -122,9 +122,9 @@ public class TestMove extends Test {
 		
 		double zC1 = (newX * 8.61) - 384.78;
 		double zC2 = (newX * (-8.71)) - 388.78;
-		if(Math.abs(zC1 - newZ) < 0.4) {
+		if(Math.abs(zC1 - newZ) < 0.8) {
 			return true; 
-		}else if(Math.abs(newZ - zC2) < 0.4) {
+		}else if(Math.abs(newZ - zC2) < 0.8) {
 			return true;
 		}else if(newZ < -7) {
 			return true;
