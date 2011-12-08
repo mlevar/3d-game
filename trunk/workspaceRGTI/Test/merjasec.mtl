@@ -13,27 +13,27 @@ Ka 0.000000 0.000000 0.000000
 Kd 0.545098 0.400000 0.207843
 Ks 0.000000 0.000000 0.000000
 d 1.000000
-map_Kd merjasec_Textures/Material1.PNG
+map_Kd merjasec_Textures/Material1.jpg
 
 newmtl Material2
 Ka 0.000000 0.000000 0.000000
-Kd 0.772549 0.709804 0.631373
+Kd 0.772549 0.631373 0.494118
 Ks 0.000000 0.000000 0.000000
 d 1.000000
-map_Kd merjasec_Textures/Material2.PNG
+map_Kd merjasec_Textures/Material2.JPG
 
 newmtl Material3
 Ka 0.000000 0.000000 0.000000
 Kd 0.576471 0.058824 0.141176
 Ks 0.000000 0.000000 0.000000
 d 1.000000
-map_Kd merjasec_Textures/Material3.PNG
+map_Kd merjasec_Textures/Material3.jpg
 
 newmtl Material4
 Ka 0.000000 0.000000 0.000000
 Kd 0.007843 0.007843 0.007843
 Ks 0.000000 0.000000 0.000000
 d 1.000000
-map_Kd merjasec_Textures/Material4.PNG
+map_Kd merjasec_Textures/Material4.jpg
 
 #EOF
