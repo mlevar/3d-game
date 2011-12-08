@@ -13,13 +13,13 @@ Ka 0.000000 0.000000 0.000000
 Kd 0.741176 0.572549 0.450980
 Ks 0.000000 0.000000 0.000000
 d 1.000000
-map_Kd hand_Textures/Material3.PNG
+map_Kd hand_Textures/Material3.jpg
 
 newmtl Material1
 Ka 0.000000 0.000000 0.000000
 Kd 0.627451 0.505882 0.341176
 Ks 0.000000 0.000000 0.000000
 d 1.000000
-map_Kd hand_Textures/Material1.PNG
+map_Kd hand_Textures/Material1.jpg
 
 #EOF

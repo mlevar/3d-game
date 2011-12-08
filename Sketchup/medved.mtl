@@ -13,20 +13,20 @@ Ka 0.000000 0.000000 0.000000
 Kd 0.498039 0.050980 0.121569
 Ks 0.000000 0.000000 0.000000
 d 1.000000
-map_Kd medved_Textures/Material1.PNG
+map_Kd medved_Textures/Material1.jpg
 
 newmtl Material2
 Ka 0.000000 0.000000 0.000000
 Kd 0.007843 0.007843 0.007843
 Ks 0.000000 0.000000 0.000000
 d 1.000000
-map_Kd medved_Textures/Material2.PNG
+map_Kd medved_Textures/Material2.jpg
 
 newmtl Material3
 Ka 0.000000 0.000000 0.000000
-Kd 0.168627 0.141176 0.101961
+Kd 0.788235 0.513725 0.282353
 Ks 0.000000 0.000000 0.000000
 d 1.000000
-map_Kd medved_Textures/Material3.PNG
+map_Kd medved_Textures/Material3.jpg
 
 #EOF
