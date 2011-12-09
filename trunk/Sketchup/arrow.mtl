@@ -17,7 +17,7 @@ map_Kd arrow_Textures/Material1.jpg
 
 newmtl Material2
 Ka 0.000000 0.000000 0.000000
-Kd 0.698039 0.533333 0.317647
+Kd 0.701961 0.533333 0.321569
 Ks 0.000000 0.000000 0.000000
 d 1.000000
 map_Kd arrow_Textures/Material2.jpg
