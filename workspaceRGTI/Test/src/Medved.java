@@ -44,4 +44,8 @@ public class Medved  {
 		model.setScaling(scale, scale, scale);
 		model.render3D();
 	}
+	
+	public Vector3f getPosition() {
+		return position;
+	}
 }

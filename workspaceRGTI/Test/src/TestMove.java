@@ -2,6 +2,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
+import org.lwjgl.util.vector.Vector3f;
 
 public class TestMove extends Test {
 
@@ -20,6 +21,7 @@ public class TestMove extends Test {
 	
 	int wheel = Mouse.getDWheel();
 
+
 	
 
 	// hide the mouse
@@ -33,6 +35,7 @@ public class TestMove extends Test {
 
 		super.setupView();
 		camera = new Player(0, +1.3f, 0, 1);
+		
 
 		Mouse.setGrabbed(true);
 
@@ -88,11 +91,15 @@ public class TestMove extends Test {
 		camera.render();
 		
 		
+		
+		
 		// discard current matrix
 		GL11.glPopMatrix();
 		GL11.glEnd();
 		
 	}
+	
+	
 
 	protected boolean checkPlayerCollision(double newX, double newZ) {
 		//float x = camera.getPosition().x;
@@ -133,6 +140,65 @@ public class TestMove extends Test {
 		}else {
 			return false;
 		}
+	}
+	
+	
+	//check if animal is shoot
+	public boolean checkShoot(Vector3f v) {
+		
+		Vector3f camPos = camera.getPosition();
+		for (int i=0;i<merjasci.length;i++) {
+			Vector3f merPos = merjasci[i].getPosition();
+			float dist = (float)Math.sqrt(Math.pow((-camPos.x - merPos.x),2) + Math.pow((camPos.z + merPos.z),2));
+			Vector3f vz = new Vector3f(-(v.x*dist+camPos.x)-1, v.y*dist+camPos.y, v.z*dist-camPos.z);
+			//System.out.println("Pozicija cloveka: " + camPos);
+			//System.out.println("Pozicija zivali: " + merPos);
+			//System.out.println("Razdalja clovek - zival: " + dist);
+			//System.out.println("Vektor pogleda: " + v);
+			//System.out.println("Zracunan vektor: " + vz);
+			float distCA = (float)Math.sqrt(Math.pow((vz.x - merPos.x),2) + Math.pow((vz.y - merPos.y - 4.3),2) + Math.pow((vz.z - merPos.z),2));
+			//System.out.println("Razdalja: " + distCA);
+			if(distCA < 1f) {
+				merjasci[i].alive = false;
+				return true;
+			}
+		}
+		
+		for (int i=0;i<kure.length;i++) {
+			Vector3f merPos = kure[i].getPosition();
+			float dist = (float)Math.sqrt(Math.pow((-camPos.x - merPos.x),2) + Math.pow((camPos.z + merPos.z),2));
+			Vector3f vz = new Vector3f(-(v.x*dist+camPos.x)-1, v.y*dist+camPos.y, v.z*dist-camPos.z);
+			//System.out.println("Pozicija cloveka: " + camPos);
+			//System.out.println("Pozicija zivali: " + merPos);
+			//System.out.println("Razdalja clovek - zival: " + dist);
+			//System.out.println("Vektor pogleda: " + v);
+			//System.out.println("Zracunan vektor: " + vz);
+			float distCA = (float)Math.sqrt(Math.pow((vz.x - merPos.x),2) + Math.pow((vz.y - merPos.y - 4.3),2) + Math.pow((vz.z - merPos.z),2));
+			//System.out.println("Razdalja: " + distCA);
+			if(distCA < 1f) {
+				kure[i].alive = false;
+				return true;
+			}
+		}
+		
+		for (int i=0;i<medvedi.length;i++) {
+			Vector3f merPos = medvedi[i].getPosition();
+			float dist = (float)Math.sqrt(Math.pow((-camPos.x - merPos.x),2) + Math.pow((camPos.z + merPos.z),2));
+			Vector3f vz = new Vector3f(-(v.x*dist+camPos.x)-1, v.y*dist+camPos.y, v.z*dist-camPos.z);
+			//System.out.println("Pozicija cloveka: " + camPos);
+			//System.out.println("Pozicija zivali: " + merPos);
+			//System.out.println("Razdalja clovek - zival: " + dist);
+			//System.out.println("Vektor pogleda: " + v);
+			//System.out.println("Zracunan vektor: " + vz);
+			float distCA = (float)Math.sqrt(Math.pow((vz.x - merPos.x),2) + Math.pow((vz.y - merPos.y - 4.3),2) + Math.pow((vz.z - merPos.z),2));
+			//System.out.println("Razdalja: " + distCA);
+			if(distCA < 1f) {
+				medvedi[i].alive = false;
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	
@@ -190,6 +256,30 @@ public class TestMove extends Test {
 		
 		if(Mouse.isButtonDown(0) && !camera.lok){
 			camera.hit=true;
+		}else if(Mouse.isButtonDown(0)) {
+			float toRad = (float)Math.PI/180;
+			float yaw = camera.getYaw() * toRad;
+			float pitch = camera.getPitch() * toRad;
+			
+			float xl = (float)Math.cos(yaw);
+			float zl = (float)Math.sin(yaw);
+			float yl = (float)Math.tan(pitch) * zl;
+			
+			float l = (float)Math.sqrt((xl*xl) + (yl*yl) + (zl*zl));
+			
+			Vector3f look = new Vector3f(-zl/l, -yl/l, -xl/l);
+			
+			boolean hitten = checkShoot(look);
+			if(hitten) {
+				System.out.println("ANIMAL DEAD");
+			}else {
+				System.out.println("Animal live");
+			}
+			
+			//System.out.println("yaw: "+yaw +" :: pich: "+pitch+" :: "+look);
+			//System.out.println(Math.sin(30*Math.PI/180));
+			//System.out.println(merjasci[0].getPosition());
+			
 		}
 		
 		if(Mouse.getDWheel() != wheel) {

@@ -110,13 +110,16 @@ public class Test extends BaseWindow {
 		GL11.glColor3f(1, 1, 1);
 
 		for (int i = 0; i < kure.length; i++) {
-			kure[i].move();
+			if(kure[i].alive)
+				kure[i].move();
 		}
 		for (int i = 0; i < merjasci.length; i++) {
-			merjasci[i].move();
+			if (merjasci[i].alive)
+				merjasci[i].move();
 		}
 		for (int i = 0; i < medvedi.length; i++) {
-			medvedi[i].move();
+			if(medvedi[i].alive)
+				medvedi[i].move();
 		}
 
 		okolje.render();
