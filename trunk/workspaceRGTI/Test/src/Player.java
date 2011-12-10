@@ -1,3 +1,5 @@
+import java.nio.IntBuffer;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -16,7 +18,8 @@ public class Player {
 	
 	int castleLife = 100;
 	
-	
+	//public Vector3f cross = new Vector3f(0f,0f,1f);
+
 	
 	
 
@@ -129,6 +132,13 @@ public class Player {
 	public Vector3f getPosition() {
 		return position;
 	}
+	
+	public float getYaw() {
+		return yaw;
+	}
+	public float getPitch() {
+		return pitch;
+	}
 
 	// translates and rotate the matrix so that it looks through the camera
 	// this dose basic what gluLookAt() does
@@ -166,6 +176,7 @@ public class Player {
 			System.out.println(hitc);
 		}else if(lok) {
 			GL11.glLoadIdentity();
+
 			//hand.setPosition(0.2f, -0.2f, -1f);
 			hand.setPosition(0.2f, -0.2f, -1f);
 			hand.setRotation(0, 0, 0);
@@ -199,8 +210,6 @@ public class Player {
 		    
 		    GL11.glEnd();
 		    
-		    
-			
 		}else {
 			GL11.glLoadIdentity();
 			hand.setPosition(0.2f, -0.2f, -1f);
@@ -215,7 +224,8 @@ public class Player {
 			sword.setScaling(1f, 1f, 1f);
 			sword.render3D();
 		}
+		
+		//System.out.println(pitch);
 	}
-	
-	
+
 }
