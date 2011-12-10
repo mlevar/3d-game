@@ -13,6 +13,12 @@ public class Player {
 	boolean hit = false;
 	int hitc = 0;
 	boolean lok = false;
+	
+	int castleLife = 100;
+	
+	
+	
+	
 
 	// 3d vector to store the camera's position in
 	public Vector3f position = null;
@@ -137,6 +143,8 @@ public class Player {
 	}
 
 	public void render() {
+		
+		
 
 		if ((hit || hitc > 0) && !lok) {
 			GL11.glLoadIdentity();
@@ -172,6 +180,27 @@ public class Player {
 			arrow.setPosition(0.055f, -0.11f, -1.645f);
 			arrow.setRotation(0, -7, 0);
 			arrow.render3D();
+			
+			//cross
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glColor3f(1, 1, 1);
+			
+		    GL11.glVertex3f( -0.02f, 0f, -2.0f);
+		    GL11.glVertex3f( -0.008f, 0f, -2.0f);
+		    
+		    GL11.glVertex3f( 0.008f,  0f, -2.0f);
+		    GL11.glVertex3f( 0.02f,  0f, -2.0f);
+		    
+		    GL11.glVertex3f( 0f, 0.02f, -2.0f);
+		    GL11.glVertex3f( 0f, 0.008f, -2.0f);
+		    
+		    GL11.glVertex3f( 0f,  -0.008f, -2.0f);
+		    GL11.glVertex3f( 0f,  -0.02f, -2.0f);
+		    
+		    GL11.glEnd();
+		    
+		    
+			
 		}else {
 			GL11.glLoadIdentity();
 			hand.setPosition(0.2f, -0.2f, -1f);
@@ -187,4 +216,6 @@ public class Player {
 			sword.render3D();
 		}
 	}
+	
+	
 }

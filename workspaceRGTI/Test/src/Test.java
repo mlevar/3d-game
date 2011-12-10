@@ -18,6 +18,8 @@ public class Test extends BaseWindow {
 
 
 	IntBuffer m_Textures;
+	
+	
 
 	/**
 	 * Initial setup of projection of the scene onto screen, lights etc.
@@ -66,6 +68,8 @@ public class Test extends BaseWindow {
 		}
 
 		m_Textures = Texture.loadTextures2D(new String[] { "ceiling.jpg" });
+		
+		
 
 	}
 
@@ -116,6 +120,9 @@ public class Test extends BaseWindow {
 		}
 
 		okolje.render();
+		
+		
+		
 
 		//GL11.glBindTexture(GL11.GL_TEXTURE_2D, m_Textures.get(0));
 		/*
@@ -178,7 +185,11 @@ public class Test extends BaseWindow {
 		 * -3.0f, -4.0f);
 		 */
 		GL11.glEnd();
+		
+		
 	}
+	
+	
 
 	public static void main(String[] args) {
 		(new TestMove()).execute();
