@@ -64,6 +64,34 @@ Ks 0.000000 0.000000 0.000000
 d 1.000000
 map_Kd okolje_Textures/Brick_Tumbled.jpg
 
+newmtl Material4
+Ka 0.000000 0.000000 0.000000
+Kd 0.380392 0.360784 0.317647
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material4.jpg
+
+newmtl Material5
+Ka 0.000000 0.000000 0.000000
+Kd 0.192157 0.207843 0.164706
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material5.jpg
+
+newmtl Material6
+Ka 0.000000 0.000000 0.000000
+Kd 0.007843 0.007843 0.007843
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material6.jpg
+
+newmtl Stone_Coursed_Rough1
+Ka 0.000000 0.000000 0.000000
+Kd 0.517647 0.501961 0.407843
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Stone_Coursed_Rough1.jpg
+
 newmtl Material12
 Ka 0.000000 0.000000 0.000000
 Kd 0.411765 0.521569 0.243137

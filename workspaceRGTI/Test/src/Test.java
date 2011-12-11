@@ -56,15 +56,15 @@ public class Test extends BaseWindow {
 		
 		kure = new Kura[3];
 		for (int i=0;i<kure.length;i++) {
-			kure[i]= new Kura(-20+i*20f, -3f, -200f, 1f, kuraModel);
+			kure[i]= new Kura(-20+i*20f, -3f, -300f, 1f, kuraModel);
 		}
 		merjasci = new Merjasec[2];
 		for (int i=0;i<merjasci.length;i++) {
-			merjasci[i]= new Merjasec(-20+i*40f, -3f, -220f, 1f, merjasecModel);
+			merjasci[i]= new Merjasec(-20+i*40f, -3f, -300f, 1f, merjasecModel);
 		}
 		medvedi = new Medved[1];
 		for (int i=0;i<medvedi.length;i++) {
-			medvedi[i]= new Medved(0+i*30, -3f, -250f, 1f, medvedModel);
+			medvedi[i]= new Medved(0+i*30, -3f, -300f, 1f, medvedModel);
 		}
 
 		m_Textures = Texture.loadTextures2D(new String[] { "ceiling.jpg" });
