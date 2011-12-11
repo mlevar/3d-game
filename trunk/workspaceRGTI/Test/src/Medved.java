@@ -5,8 +5,8 @@ public class Medved  {
 
 	private Vector3f position = null;
 	private Obj3D model;
-	private float speed = 0.03f;
-	private Vector3f direction = new Vector3f(0, 0, 0);;
+	private float speed = 0.04f;
+	private Vector3f direction = new Vector3f(0, 0, 25);;
 	private float scale = 2;
 	public boolean alive;
 	private boolean moving;
