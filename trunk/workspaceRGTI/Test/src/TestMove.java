@@ -291,6 +291,14 @@ public class TestMove extends Test {
 				camera.lok = true;
 			}
 		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_2))// move forward
+		{
+			if(camera.lok) {
+				camera.lok = false;
+			}else {
+				camera.lok = true;
+			}
+		}
 		
 		//float xP = camera.getPosition().x;
 		//float zP = camera.getPosition().z;
