@@ -1,0 +1,109 @@
+# Alias Wavefront MTL File Exported from SketchUp
+# with OBJexporter (c) 2010-2011 TIG
+# Made for 'okolje.obj'
+
+newmtl Default_Material
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+
+newmtl Fencing_Weathered
+Ka 0.000000 0.000000 0.000000
+Kd 0.435294 0.411765 0.376471
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Fencing_Weathered.jpg
+
+newmtl Stone_Coursed_Rough
+Ka 0.000000 0.000000 0.000000
+Kd 0.647059 0.627451 0.509804
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Stone_Coursed_Rough.jpg
+
+newmtl Groundcover_RiverRock_4inch
+Ka 0.000000 0.000000 0.000000
+Kd 0.568627 0.494118 0.427451
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Groundcover_RiverRock_4inch.jpg
+
+newmtl Material2
+Ka 0.000000 0.000000 0.000000
+Kd 0.325490 0.415686 0.125490
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material2.jpg
+
+newmtl Material3
+Ka 0.000000 0.000000 0.000000
+Kd 0.282353 0.466667 0.109804
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material3.jpg
+
+newmtl Material9
+Ka 0.000000 0.000000 0.000000
+Kd 0.309804 0.309804 0.337255
+Ks 0.000000 0.000000 0.000000
+d 0.790000
+map_Kd okolje_Textures/Material9.jpg
+
+newmtl Stone_Masonry_Multi
+Ka 0.000000 0.000000 0.000000
+Kd 0.713725 0.686275 0.643137
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Stone_Masonry_Multi.jpg
+
+newmtl Brick_Tumbled
+Ka 0.000000 0.000000 0.000000
+Kd 0.529412 0.517647 0.517647
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Brick_Tumbled.jpg
+
+newmtl Material4
+Ka 0.000000 0.000000 0.000000
+Kd 0.380392 0.360784 0.317647
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material4.jpg
+
+newmtl Material5
+Ka 0.000000 0.000000 0.000000
+Kd 0.192157 0.207843 0.164706
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material5.jpg
+
+newmtl Material6
+Ka 0.000000 0.000000 0.000000
+Kd 0.007843 0.007843 0.007843
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material6.jpg
+
+newmtl Stone_Coursed_Rough1
+Ka 0.000000 0.000000 0.000000
+Kd 0.517647 0.501961 0.407843
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Stone_Coursed_Rough1.jpg
+
+newmtl Material12
+Ka 0.000000 0.000000 0.000000
+Kd 0.411765 0.521569 0.243137
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material12.jpg
+
+newmtl Material1
+Ka 0.000000 0.000000 0.000000
+Kd 0.498039 0.482353 0.466667
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+map_Kd okolje_Textures/Material1.jpg
+
+#EOF
