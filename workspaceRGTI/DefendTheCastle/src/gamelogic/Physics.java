@@ -25,26 +25,31 @@ public class Physics {
 	}
 
 	public boolean checkCollisions(GameObject[] gameobjects) {
-	for(int i=0;i<gameobjects.length-1;i++){
-			
-			for(int j=i+1;j<gameobjects.length;j++){
-				if(i==j)continue;
-				if(checkCollisionObjects(gameobjects[i],gameobjects[j])){
-					gameobjects[i].moving=false;
-				}else{
-					gameobjects[i].moving=true;
+		for (int i = 0; i < gameobjects.length - 1; i++) {
+			if (gameobjects[i].alive == true) {
+				for (int j = i + 1; j < gameobjects.length; j++) {
+					if (i == j)
+						continue;
+					if (checkCollisionObjects(gameobjects[i], gameobjects[j])) {
+						gameobjects[i].moveback();
+						//gameobjects[i].moving = false;
+						System.out.println("COLLISION DETECTED");
+					} else {
+						gameobjects[i].moving = true;
+					}
+
 				}
-				
 			}
 		}
-		
-		
+
 		return false;
 	}
-	public boolean checkCollisionObjects(GameObject o1,GameObject o2){
+
+	public boolean checkCollisionObjects(GameObject o1, GameObject o2) {
 		Vector3f p1 = o1.getPosition();
 		Vector3f p2 = o2.getPosition();
-		if(Math.sqrt(Math.pow(p1.x-p2.x, 2)+Math.pow(p1.z-p2.z,2))<o1.getRadius()+o2.getRadius()+0.2f)
+		if (Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.z - p2.z, 2)) < o1
+				.getRadius() + o2.getRadius() + 0.2f)
 			return true;
 		return false;
 	}
