@@ -55,6 +55,8 @@ public abstract class GameObject {
 	}
 	public abstract void move(long delta);
 
+	public abstract void moveback();
+	
 	public abstract void kill() ;
 
 	public abstract void render(long delta);

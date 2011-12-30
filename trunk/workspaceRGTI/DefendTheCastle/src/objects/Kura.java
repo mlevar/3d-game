@@ -60,7 +60,9 @@ public class Kura extends GameObject {
 		}
 		render(delta);
 	}
-
+	public void moveback(){
+		this.move(-1);
+	}
 	public void kill() {
 
 	}

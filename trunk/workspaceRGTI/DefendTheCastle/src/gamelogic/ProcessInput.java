@@ -157,9 +157,9 @@ public class ProcessInput extends RenderCamera {
 			
 			boolean hitten = physics.checkShoot(look,camera,gameobjects);
 			if(hitten) {
-				System.out.println("ANIMAL DEAD");
+				//System.out.println("ANIMAL DEAD");
 			}else {
-				System.out.println("Animal live");
+				//System.out.println("Animal live");
 			}
 			
 			//System.out.println("yaw: "+yaw +" :: pich: "+pitch+" :: "+look);
