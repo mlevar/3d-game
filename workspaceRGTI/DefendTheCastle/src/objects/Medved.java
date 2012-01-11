@@ -72,6 +72,7 @@ public class Medved extends GameObject {
 		model.setRotation(0, angle, 0);
 		model.setScaling(scale, scale, scale);
 		model.render3D();
+		
 	}
 
 }

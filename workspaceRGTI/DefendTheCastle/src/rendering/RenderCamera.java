@@ -74,7 +74,6 @@ public class RenderCamera extends RenderObjects {
 		
 		
 		
-		
 		// discard current matrix
 		GL11.glPopMatrix();
 		GL11.glEnd();

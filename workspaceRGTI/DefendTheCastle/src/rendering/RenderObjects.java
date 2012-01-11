@@ -6,6 +6,7 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
+import org.lwjgl.util.vector.Vector3f;
 
 import objects.*;
 
@@ -16,6 +17,7 @@ public class RenderObjects extends RenderEnvironment {
 	public Obj3D kuraModel;
 	public Obj3D merjasecModel;
 	public Obj3D medvedModel;
+	
 
 	IntBuffer m_Textures;
 
@@ -66,6 +68,8 @@ public class RenderObjects extends RenderEnvironment {
 			if (gameobjects[i].alive)
 				gameobjects[i].move(delta);
 		}
+		
+		
 
 		GL11.glEnd();
 

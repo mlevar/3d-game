@@ -1,9 +1,17 @@
 package gamelogic;
 
-import objects.Player;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import objects.GameObject;
+import objects.Player;
+import objects.Puscica;
+
+import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -14,8 +22,9 @@ public class ProcessInput extends RenderCamera {
 					
 
 	Physics physics = new Physics();
-
-	
+	Text text;
+	boolean pause = false;
+	Meni m;
 
 	// hide the mouse
 
@@ -23,7 +32,7 @@ public class ProcessInput extends RenderCamera {
 	 * Initial setup of projection of the scene onto screen, lights etc.
 	 */
 	protected void setupView() {
-		
+		text = new Text("Testni izpis", 50);
 		super.setupView();
 
 	}
@@ -34,10 +43,21 @@ public class ProcessInput extends RenderCamera {
 	 */
 	protected void renderFrame(long delta) {
 		physics.checkCollisions(gameobjects);
-
-		super.renderFrame(delta);
-	
 		
+		super.renderFrame(delta);
+		
+		/*
+		text = new BitmapText();
+		String napis = "abcDDQ";
+	    startHUD();
+	    
+	    GL11.glColor4f(0, 1, 0, 1);
+	    float w = text.textWidth(napis, 15);
+	    GL11.glTranslatef(1024-w, 768-20, 0);
+	    text.renderString(napis, 15);
+	    
+	    endHUD();
+		*/
 	}
 	
 	
@@ -92,8 +112,8 @@ public class ProcessInput extends RenderCamera {
 	 * Processes Keyboard and Mouse input and spawns actions
 	 */
 	protected void processInput() {
-
-	
+		
+	if(!pause) {
 		// keep looping till the display window is closed the ESC key is down
 		time = System.currentTimeMillis();
 		dt = (time - lastTime) / 1000.0f;
@@ -142,7 +162,8 @@ public class ProcessInput extends RenderCamera {
 		
 		if(Mouse.isButtonDown(0) && !camera.lok){
 			camera.hit=true;
-		}else if(Mouse.isButtonDown(0)) {
+		}else if(Mouse.isButtonDown(0) && !camera.puscicaIzstreljena) {
+			camera.puscicaIzstreljena = true;
 			float toRad = (float)Math.PI/180;
 			float yaw = camera.getYaw() * toRad;
 			float pitch = camera.getPitch() * toRad;
@@ -154,7 +175,12 @@ public class ProcessInput extends RenderCamera {
 			float l = (float)Math.sqrt((xl*xl) + (yl*yl) + (zl*zl));
 			
 			Vector3f look = new Vector3f(-zl/l, -yl/l, -xl/l);
-			
+			float xx = look.x;
+			float yy = look.y;
+			float zz = look.z;
+			camera.smerPuscice.x = new Float(xx);
+			camera.smerPuscice.y = new Float(yy);
+			camera.smerPuscice.z = new Float(zz);
 			boolean hitten = physics.checkShoot(look,camera,gameobjects);
 			if(hitten) {
 				//System.out.println("ANIMAL DEAD");
@@ -218,9 +244,57 @@ public class ProcessInput extends RenderCamera {
 			}
 		}
 
-
-		super.processInput();
 	}
+	
+	if(Keyboard.isKeyDown(Keyboard.KEY_P)) {
+		
+		pause = true;
+		for (GameObject go : gameobjects) {
+			go.moving = false;
+		}
+			
+	}
+	
+	if(Keyboard.isKeyDown(Keyboard.KEY_U)) {
+		pause = false;
+		for (GameObject go : gameobjects) {
+			go.moving = true;
+		}
+	}
+	
+	if(Keyboard.isKeyDown(Keyboard.KEY_R)) {
+		Display.destroy();
+		(new ProcessInput()).execute();
+	}
+	
+		
+	    
+	    
+		super.processInput();
+		
+		startHUD();
+	    text.setPosition(10, 10, 0);
+	    //text.render3D();   //ce odkomentiramo ne dela!!!
+	    endHUD();
+	}
+	
+	
+	protected void startHUD() {
+	    GL11.glMatrixMode(GL11.GL_PROJECTION);
+	    GL11.glPushMatrix();
+	    GL11.glLoadIdentity();
+	    GL11.glOrtho(0, 1024, 0, 768, -1, 1);
+	    GL11.glMatrixMode(GL11.GL_MODELVIEW);
+	    GL11.glPushMatrix();
+	    GL11.glLoadIdentity();
+	  }
+	  
+	  protected void endHUD() {
+	    GL11.glMatrixMode(GL11.GL_PROJECTION);
+	    GL11.glPopMatrix();
+	    GL11.glMatrixMode(GL11.GL_MODELVIEW);
+	    GL11.glPopMatrix();
+	  }
 
 	public static void main(String[] args) {
 		(new ProcessInput()).execute();

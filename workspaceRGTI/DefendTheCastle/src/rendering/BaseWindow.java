@@ -79,7 +79,7 @@ public class BaseWindow {
 	 * Resets the view of current frame
 	 */
 	protected void resetView() {
-
+		
 	}
 
 	/**
@@ -95,7 +95,8 @@ public class BaseWindow {
 	protected void processInput() {
 		if (Display.isCloseRequested()
 				|| Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
-			BaseWindow.isRunning = false;
+			
+			this.isRunning = false;
 		}
 	}
 

@@ -64,7 +64,7 @@ public class Kura extends GameObject {
 		this.move(-1);
 	}
 	public void kill() {
-
+		
 	}
 
 	public void render(long delta) {
@@ -72,6 +72,7 @@ public class Kura extends GameObject {
 		model.setRotation(0, angle, 0);
 		model.setScaling(scale, scale, scale);
 		model.render3D();
+		
 	}
 
 }
