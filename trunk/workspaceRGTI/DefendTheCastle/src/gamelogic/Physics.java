@@ -21,7 +21,7 @@ public class Physics {
 	 */
 
 	public Physics() {
-
+		
 	}
 
 	public boolean checkCollisions(GameObject[] gameobjects) {

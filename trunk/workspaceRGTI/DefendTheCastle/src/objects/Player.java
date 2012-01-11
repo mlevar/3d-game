@@ -4,6 +4,8 @@ import java.nio.IntBuffer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
+import rendering.*;
+
 public class Player {
 
 	// First Person Camera Controller
@@ -17,7 +19,12 @@ public class Player {
 	public int hitc = 0;
 	public boolean lok = false;
 	
+	public boolean puscicaIzstreljena = false;
+	public Vector3f smerPuscice = new Vector3f(0,0,0);
+	
 	public int castleLife = 100;
+	
+	public Obj3D puscica;
 	
 	//public Vector3f cross = new Vector3f(0f,0f,1f);
 
@@ -50,6 +57,8 @@ public class Player {
 		sword = new Obj3Dpivot("mec.obj");
 		bow = new Obj3Dpivot("bow.obj");
 		arrow = new Obj3Dpivot("arrow.obj");
+		
+		puscica = new Obj3D("arrow.obj");
 		
 		// hand.setPosition(0.2f,-0.2f,-1.5f );
 		// sword.setPivot(offset.x,offset.y,offset.z);
@@ -189,9 +198,23 @@ public class Player {
 			bow.render3D();
 			
 			//arrow.setPosition(0.2f, -0.11f, -1.6f);
-			arrow.setPosition(0.055f, -0.11f, -1.645f);
-			arrow.setRotation(0, -7, 0);
-			arrow.render3D();
+			if(!puscicaIzstreljena) {
+				arrow.setPosition(0.055f, -0.11f, -1.645f);
+				arrow.setRotation(0, -7, 0);
+				arrow.render3D();
+			}else {
+				smerPuscice.x = smerPuscice.x * 1.2f;
+				smerPuscice.y = smerPuscice.y * 1.2f;
+				smerPuscice.z = smerPuscice.z * 1.2f;
+				if(smerPuscice.x > 70 || smerPuscice.x < -70 || smerPuscice.y > 70 || smerPuscice.y < -1 || smerPuscice.z > 250 || smerPuscice.z < -30) {
+					puscicaIzstreljena = false;
+				}
+				puscica.setPosition(smerPuscice.x, smerPuscice.y, smerPuscice.z);
+				
+				puscica.setRotation(0, -7, 0);
+				puscica.render3D();
+				
+			}
 			
 			//cross
 			GL11.glBegin(GL11.GL_LINES);
@@ -210,6 +233,7 @@ public class Player {
 		    GL11.glVertex3f( 0f,  -0.02f, -2.0f);
 		    
 		    GL11.glEnd();
+		    
 		    
 		}else {
 			GL11.glLoadIdentity();
