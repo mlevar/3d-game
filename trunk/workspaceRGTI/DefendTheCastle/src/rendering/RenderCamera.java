@@ -57,26 +57,33 @@ public class RenderCamera extends RenderObjects {
 		GL11.glRotatef(30.0f, 1.0f, 0.0f, 0.0f);
 	}
 
+
 	/**
 	 * Renders current frame
 	 */
 	protected void renderFrame(long delta) {
 
-	
 
 		GL11.glLoadIdentity();
 
+
 		camera.lookThrough();
+		
 		
 
 		super.renderFrame(delta);
+		
+	
 		camera.render(delta);
 		
-		
+		 
 		
 		// discard current matrix
 		GL11.glPopMatrix();
 		GL11.glEnd();
+		
+
+	
 		
 	}
 	

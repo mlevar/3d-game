@@ -6,16 +6,18 @@ import org.lwjgl.util.vector.Vector3f;
 public class Kura extends GameObject {
 
 	private Obj3D model;
-
+	private float delay;
 	private float scale = 2;
 	float angle;
 
-	public Kura(float x, float y, float z, Obj3D mModel, float scale) {
+	public Kura(float x, float y, float z, Obj3D mModel, float scale,float delay) {
 
 		super(x, y, z, 0.01f);
 
 		this.scale = scale;
 		model = mModel;
+		
+		this.delay = (float) delay*1000;
 		
 		super.setRadius(0.4f*scale);
 		super.setBBox(scale * 0.4f, scale * 0.35f, scale * 0.45f);
@@ -38,6 +40,12 @@ public class Kura extends GameObject {
 				deltaz = 0;
 			}
 
+			if(collision){
+				deltax*= (int)Math.random()*3.99-1.99;
+				deltaz*= (int)Math.random()*3.99-1.99;
+			}
+			
+			
 			angle = (float) (Math.atan(Math.abs(position.x - direction.x)
 					/ Math.abs(position.z - direction.z)) * 180 / Math.PI);
 
@@ -55,18 +63,27 @@ public class Kura extends GameObject {
 			}
 
 			if (deltax == 0 && deltaz == 0) {
-				moving = false;
+				if(direction.z==50)
+					moving=false;
+				else
+					direction = new Vector3f(0, 0, 50);
 			}
 		}
 		render(delta);
 	}
-	public void moveback(){
-		this.move(-1);
-	}
+
 	public void kill() {
 		
 	}
 
+	
+	public void delay(long delta){
+		this.delay-=delta;
+		if (delay<0){
+			this.delayed=false;
+			this.alive=true;}
+	}
+	
 	public void render(long delta) {
 		model.setPosition(position.x, position.y, position.z);
 		model.setRotation(0, angle, 0);

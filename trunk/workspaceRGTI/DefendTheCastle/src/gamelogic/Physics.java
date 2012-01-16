@@ -9,6 +9,7 @@ import org.lwjgl.util.vector.Vector3f;
 
 import rendering.*;
 import gamelogic.ProcessInput;
+import rendering.RenderCamera;
 
 public class Physics {
 	/*
@@ -21,27 +22,73 @@ public class Physics {
 	 */
 
 	public Physics() {
-		
+
 	}
 
-	public boolean checkCollisions(GameObject[] gameobjects) {
+	public boolean checkCollisions(GameObject[] gameobjects, Player p) {
+
 		for (int i = 0; i < gameobjects.length - 1; i++) {
 			if (gameobjects[i].alive == true) {
-				for (int j = i + 1; j < gameobjects.length; j++) {
-					if (i == j)
-						continue;
-					if (checkCollisionObjects(gameobjects[i], gameobjects[j])) {
-						gameobjects[i].moveback();
-						//gameobjects[i].moving = false;
-						System.out.println("COLLISION DETECTED");
-					} else {
-						gameobjects[i].moving = true;
-					}
+
+				if (checkCollisionPlayer(p, gameobjects[i])) {
+
+					Vector3f c = gameobjects[i].getPosition();
+					float s = gameobjects[i].radius;
+					if (p.position.x < gameobjects[i].getPosition().x)
+						gameobjects[i].setDirection(c.x - s * 0.4f, c.y, c.z
+								- s * 0.4f);
+					else
+						gameobjects[i].setDirection(c.x + s * 0.4f, c.y, c.z
+								- s * 0.4f);
 
 				}
+
+				for (int j = i + 1; j < gameobjects.length; j++) {
+					if (gameobjects[j].alive == true) {
+						if (i == j)
+							continue;
+						if (checkCollisionObjects(gameobjects[i],
+								gameobjects[j])) {
+							// gameobjects[i].collision = true;
+							// gameobjects[j].collision = true;
+							// gameobjects[j].moving = false;
+
+							Vector3f c = gameobjects[i].getPosition();
+							float s = gameobjects[i].radius;
+
+							if (gameobjects[i].getPosition().x < gameobjects[j]
+									.getPosition().x)
+
+								gameobjects[i].setDirection(c.x - s * 0.4f,
+										c.y, c.z - s * 0.4f);
+							else
+								gameobjects[i].setDirection(c.x + s * 0.4f,
+										c.y, c.z - s * 0.4f);
+							// gameobjects[j].setDirection(c.x-0.5f, c.y,
+							// c.z+0.5f);
+							// System.out.println("COLLISION DETECTED");
+						} else {
+							// gameobjects[j].moving = true;
+							// gameobjects[i].collision = false;
+							// gameobjects[j].collision = false;
+						}
+					}
+				}
+
 			}
 		}
 
+		return false;
+	}
+
+	public boolean checkCollisionPlayer(Player p, GameObject o) {
+
+		Vector3f p1 = p.getPosition();
+		Vector3f p2 = o.getPosition();
+
+		if (Math.sqrt(Math.pow(-p1.x - p2.x, 2) + Math.pow(-p1.z - p2.z, 2)) < p.radius
+				+ o.getRadius() + 0.05f)
+			return true;
 		return false;
 	}
 
@@ -49,7 +96,7 @@ public class Physics {
 		Vector3f p1 = o1.getPosition();
 		Vector3f p2 = o2.getPosition();
 		if (Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.z - p2.z, 2)) < o1
-				.getRadius() + o2.getRadius() + 0.2f)
+				.getRadius() + o2.getRadius() + 0.05f)
 			return true;
 		return false;
 	}
