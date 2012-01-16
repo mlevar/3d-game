@@ -92,14 +92,17 @@ public class BaseWindow {
 	/**
 	 * Processes Keyboard and Mouse input and spawns actions
 	 */
+	
 	protected void processInput() {
+		/*
 		if (Display.isCloseRequested()
 				|| Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 			
 			this.isRunning = false;
 		}
+		*/
 	}
-
+	 
 	/**
 	 * Finds best 1024x768 display mode and sets it
 	 * 

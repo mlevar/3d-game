@@ -14,6 +14,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.XRandR.Screen;
 import org.lwjgl.util.vector.Vector3f;
 import rendering.*;
 import gamelogic.Physics;
@@ -23,8 +24,26 @@ public class ProcessInput extends RenderCamera {
 	// Physics physics = new Physics();
 	BitmapText text;
 	boolean pause = false;
+	boolean controlls = false;
 	Meni m;
-	Text hud_txt;
+	Text gradLife;
+	Text level;
+	
+	Text meni;
+	Text meniItem1;
+	Text meniItem2;
+	Text meniItem3;
+	Text meniItem4;
+	
+	Text controlHead;
+	Text controlItem1;
+	Text controlItem2;
+	Text controlItem3;
+	Text controlItem4;
+	Text controlItem5;
+	Text controlItem6;
+	Text controlItem7;
+	Text controlBack;
 	// hide the mouse
 
 	/**
@@ -33,7 +52,24 @@ public class ProcessInput extends RenderCamera {
 	protected void setupView() {
 		// text = new Text("Testni izpis", 50);
 		
-		hud_txt = new Text("Hello world", 80);
+		gradLife = new Text("", 20);
+		level = new Text("", 20);
+		
+		meni = new Text("Meni", 50);
+		meniItem1 = new Text("[1] Resume game", 40);
+		meniItem2 = new Text("[2] Restart game", 40);
+		meniItem3 = new Text("[3] Controlls", 40);
+		meniItem4 = new Text("[4] Exit", 40);
+		
+		controlHead = new Text("Controlls", 50);
+		controlItem1 = new Text("W - forward", 40);
+		controlItem2 = new Text("S - backward", 40);
+		controlItem3 = new Text("A - left", 40);
+		controlItem4 = new Text("D - right", 40);
+		controlItem5 = new Text("wheel - cheange weapon", 40);
+		controlItem6 = new Text("1 - weapon: sword", 40);
+		controlItem7 = new Text("2 - weapon: bow", 40);
+		controlBack = new Text("[5] Back", 40);
 		
 		super.setupView();
 
@@ -64,9 +100,60 @@ public class ProcessInput extends RenderCamera {
 		//endHUD();
 */
 		
-		 startHUD();
-		    hud_txt.setPosition(10, 10,0);
-		    hud_txt.render3D();
+		 	startHUD();
+		 	
+		 	gradLife.setContent("Castle: " + Integer.toString(camera.castleLife));
+		    gradLife.setPosition(width - 150, height - 30,0);
+		    gradLife.render3D();
+		    
+		    level.setContent("Level: " + Integer.toString(game.level));
+		    level.setPosition(10, height - 30, 0);
+		    level.render3D();
+		    
+		    if(pause && !controlls) {
+			    meni.setPosition(50, height - 100, 0);
+			    meni.render3D();
+			    
+			    meniItem1.setPosition(50, height - 180, 0);
+			    meniItem1.render3D();
+			    
+			    meniItem2.setPosition(50, height - 250, 0);
+			    meniItem2.render3D();
+			    
+			    meniItem3.setPosition(50, height - 320, 0);
+			    meniItem3.render3D();
+			    
+			    meniItem4.setPosition(50, height - 390, 0);
+			    meniItem4.render3D();
+		    }else if(pause && controlls) {
+		    	controlHead.setPosition(50, height - 100, 0);
+			    controlHead.render3D();
+			    
+			    controlItem1.setPosition(50, height - 180, 0);
+			    controlItem1.render3D();
+			    
+			    controlItem2.setPosition(50, height - 250, 0);
+			    controlItem2.render3D();
+			    
+			    controlItem3.setPosition(50, height - 320, 0);
+			    controlItem3.render3D();
+			    
+			    controlItem4.setPosition(50, height - 390, 0);
+			    controlItem4.render3D();
+			    
+			    controlItem5.setPosition(50, height - 460, 0);
+			    controlItem5.render3D();
+			    
+			    controlItem6.setPosition(50, height - 530, 0);
+			    controlItem6.render3D();
+			    
+			    controlItem7.setPosition(50, height - 600, 0);
+			    controlItem7.render3D();
+			    
+			    controlBack.setPosition(50, height - 670, 0);
+			    controlBack.render3D();
+		    }
+		    
 		    endHUD();
 			
 		
@@ -197,13 +284,15 @@ public class ProcessInput extends RenderCamera {
 					camera.lok = true;
 				}
 			}
+			
+			if (Keyboard.isKeyDown(Keyboard.KEY_1))// move forward
+			{
+					camera.lok = false;
+			}
+			
 			if (Keyboard.isKeyDown(Keyboard.KEY_2))// move forward
 			{
-				if (camera.lok) {
-					camera.lok = false;
-				} else {
 					camera.lok = true;
-				}
 			}
 
 			// float xP = camera.getPosition().x;
@@ -244,9 +333,36 @@ public class ProcessInput extends RenderCamera {
 				}
 			}
 
+		}else if(pause && !controlls) {
+			
+			if (Keyboard.isKeyDown(Keyboard.KEY_1)) {
+				pause = false;
+				for (GameObject go : gameobjects) {
+					go.moving = true;
+				}
+			}
+			
+			if (Keyboard.isKeyDown(Keyboard.KEY_2)) {
+				Display.destroy();
+				(new ProcessInput()).execute();
+			}
+			
+			if(Keyboard.isKeyDown(Keyboard.KEY_3)) {
+				controlls = true;
+			}
+			
+			if(Keyboard.isKeyDown(Keyboard.KEY_4)) {
+				isRunning = false;
+			}
+		}
+		
+		if(pause && controlls) {
+			if(Keyboard.isKeyDown(Keyboard.KEY_5)) {
+				controlls = false;
+			}
 		}
 
-		if (Keyboard.isKeyDown(Keyboard.KEY_P)) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 
 			pause = true;
 			for (GameObject go : gameobjects) {
@@ -255,21 +371,8 @@ public class ProcessInput extends RenderCamera {
 
 		}
 
-		if (Keyboard.isKeyDown(Keyboard.KEY_U)) {
-			pause = false;
-			for (GameObject go : gameobjects) {
-				go.moving = true;
-			}
-		}
-
-		if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
-			Display.destroy();
-			(new ProcessInput()).execute();
-		}
-
 
 		
-		super.processInput();
 
 		
 

@@ -19,6 +19,10 @@ public class Text extends Model3D
     contentText = content;
     fontFize = size;
   }
+  
+  public void setContent(String content) {
+	  contentText = content;
+  }
 
   @Override
   public void render3D()
