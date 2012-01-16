@@ -9,17 +9,21 @@ public abstract class GameObject {
 	protected float length;
 	protected float height;
 	protected float width;
-	protected float speed;
-	protected float radius;
+	public float speed;
+	public float radius;
 	protected Vector3f direction = new Vector3f(0, 0, 0);;
 
 	public boolean alive;
 	public boolean moving;
+	public boolean delayed;
+	public boolean collision;
 
 	public GameObject(float x, float y, float z, float speed) {
 		this.position = new Vector3f(x, y, z);
 	
-		this.alive = true;
+		this.collision=false;
+		this.delayed=true;
+		this.alive = false;
 		this.moving = true;
 		this.speed=speed;
 
@@ -54,11 +58,10 @@ public abstract class GameObject {
 		return this.radius;
 	}
 	public abstract void move(long delta);
-
-	public abstract void moveback();
 	
 	public abstract void kill() ;
 
 	public abstract void render(long delta);
+	public abstract void delay(long delta);
 
 }

@@ -19,6 +19,7 @@ public class Player {
 	public int hitc = 0;
 	public boolean lok = false;
 	
+	
 	public boolean puscicaIzstreljena = false;
 	public Vector3f smerPuscice = new Vector3f(0,0,0);
 	
@@ -39,7 +40,7 @@ public class Player {
 	// the rotation around the X axis of the camera
 	private float pitch = 0.0f;
 
-	public float radius = 0f;
+	public float radius = 1f;
 
 	public Player(float x, float y, float z, float r) {
 		// instantiate position Vector3f to the x y z params.
