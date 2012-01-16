@@ -67,6 +67,7 @@ public class Physics {
 							// gameobjects[j].setDirection(c.x-0.5f, c.y,
 							// c.z+0.5f);
 							// System.out.println("COLLISION DETECTED");
+							
 						} else {
 							// gameobjects[j].moving = true;
 							// gameobjects[i].collision = false;

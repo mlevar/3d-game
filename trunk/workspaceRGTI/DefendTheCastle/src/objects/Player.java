@@ -235,7 +235,6 @@ public class Player {
 		    
 		    GL11.glEnd();
 		    
-		    
 		}else {
 			GL11.glLoadIdentity();
 			hand.setPosition(0.2f, -0.2f, -1f);

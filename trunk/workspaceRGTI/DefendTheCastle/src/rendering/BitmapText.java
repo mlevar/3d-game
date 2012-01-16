@@ -34,6 +34,7 @@ public class BitmapText
     for (int i = 0; i < len; i++) {
       charCode = getCode(text.charAt(i));
 //      GL11.glColor4f(1, 0.0f + (float)i/(float)len, 0, 1f);
+      GL11.glColor3f(1,1,1);
       GL11.glTexCoord2f(dx+charCode[1]*fw, (charCode[0]+1)*fh);      GL11.glVertex3f(charPos[0], charPos[1], 1);
       GL11.glTexCoord2f(dx+(charCode[1]+1)*fw, (charCode[0]+1)*fh);  GL11.glVertex3f(charPos[0]+ff*size, charPos[1], 1);
       GL11.glTexCoord2f(dx+(charCode[1]+1)*fw, charCode[0]*fh);      GL11.glVertex3f(charPos[0]+ff*size, charPos[1]+size, 1);
