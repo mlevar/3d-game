@@ -19,6 +19,8 @@ public class Player {
 	public int hitc = 0;
 	public boolean lok = false;
 	
+	public Vector3f heading = new Vector3f();
+	
 	
 	public boolean puscicaIzstreljena = false;
 	public Vector3f smerPuscice = new Vector3f(0,0,0);
@@ -34,7 +36,7 @@ public class Player {
 
 	// 3d vector to store the camera's position in
 	public Vector3f position = null;
-	public Vector3f offset = new Vector3f(0.3f, -2.7f, -1f);
+//	public Vector3f offset = new Vector3f(0.3f, -2.7f, -1f);
 	// the rotation around the Y axis of the camera
 	private float yaw = 0.0f;
 	// the rotation around the X axis of the camera

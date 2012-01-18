@@ -17,7 +17,7 @@ public class Merjasec extends GameObject {
 
 		this.scale = scale;
 		model = mModel;
-
+		this.health=4;
 		this.delay = (float) delay * 1000;
 
 		super.setRadius(1f * scale);

@@ -16,7 +16,7 @@ public class Kura extends GameObject {
 
 		this.scale = scale;
 		model = mModel;
-		
+		this.health=1;
 		this.delay = (float) delay*1000;
 		
 		super.setRadius(0.4f*scale);

@@ -47,13 +47,26 @@ public class Game {
 	public void createLevels() {
 		levels = new Object[5][];
 
-		levels[0] = l1;
+		levels[0] = level1();
+		levels[1] = level2();
+		levels[2] = level3();
+		levels[3] = level4();
+		levels[4] = level5();
+	}
+
+	public GameObject[] level0() {
+		GameObject[] l = new GameObject[1];
+
+		for (int i = 0; i < l.length; i++) {
+			l[i] = new Kura(-25 + (i % 10) * 5f, -3f, -100f, kuraModel, 2,
+					0.1f * i);
+		}
+
+		return l;
 	}
 
 	public GameObject[] level1() {
-		//GameObject[] l = new GameObject[50];
-		GameObject[] l = new GameObject[10];
-
+		GameObject[] l = new GameObject[30];
 		for (int i = 0; i < l.length; i++) {
 			l[i] = new Kura(-25 + (i % 10) * 5f, -3f, -300f, kuraModel, 2,
 					0.1f * i);
@@ -63,7 +76,7 @@ public class Game {
 	}
 
 	public GameObject[] level2() {
-		GameObject[] l = new GameObject[50];
+		GameObject[] l = new GameObject[40];
 
 		for (int i = 0; i < l.length; i++) {
 			if (i % 8 == 0) {
@@ -81,6 +94,31 @@ public class Game {
 	}
 
 	public GameObject[] level3() {
+		GameObject[] l = new GameObject[50];
+
+		for (int i = 0; i < l.length; i++) {
+
+			if (i % 12 == 0) {
+				l[i] = new Medved(-25 + (i % 10) * 5f, -3f, -300f, medvedModel,
+						2, 0.1f * i);
+				continue;
+			}
+
+			if (i % 8 == 0) {
+				l[i] = new Merjasec(-25 + (i % 10) * 5f, -3f, -300f,
+						merjasecModel, 2, 0.1f * i);
+				continue;
+			}
+
+			l[i] = new Kura(-25 + (i % 10) * 5f, -3f, -300f, kuraModel, 2,
+					0.1f * i);
+
+		}
+
+		return l;
+	}
+
+	public GameObject[] level4() {
 		GameObject[] l = new GameObject[60];
 
 		for (int i = 0; i < l.length; i++) {
@@ -100,32 +138,29 @@ public class Game {
 			l[i] = new Kura(-25 + (i % 10) * 5f, -3f, -300f, kuraModel, 2,
 					0.1f * i);
 
-			// l[i] = new Medved(-50 + i * 5f, -3f, -50f, medvedModel, 2);
 		}
-
 		return l;
 	}
 
-	public GameObject[] level4() {
-		GameObject[] l = new GameObject[50];
+	public GameObject[] level5() {
+		GameObject[] l = new GameObject[10];
 
 		for (int i = 0; i < l.length; i++) {
+			if (i == 9) {
+				l[i] = new Medved(0, -3f, -300f, medvedModel, 25, 15);
+				l[i].health = 300;
+				l[i].speed = 0.002f;
+				continue;
+			}
 
-			 l[i] = new Medved(-25 + (i % 10) * 5f, -3f, -50f, medvedModel, 2,0.01f * i);
+			l[i] = new Kura(-25 + (i % 10) * 5f, -3f, -300f, kuraModel, 7,
+					0.1f * i);
+			l[i].health = 10;
+			l[i].speed = 0.006f;
+
 		}
 
 		return l;
 	}
 
-	// levels:
-	private Object[] l1 = { Kura.class, Kura.class, Kura.class, Kura.class,
-			Kura.class };
-	private Object[] l2 = { Kura.class, Kura.class, Kura.class, Kura.class,
-			Kura.class };
-	private Object[] l3 = { Kura.class, Kura.class, Kura.class, Kura.class,
-			Kura.class };
-	private Object[] l4 = { Kura.class, Kura.class, Kura.class, Kura.class,
-			Kura.class };
-	private Object[] l5 = { Kura.class, Kura.class, Kura.class, Kura.class,
-			Kura.class };
 }

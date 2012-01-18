@@ -1,7 +1,5 @@
 package gamelogic;
 
-
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -27,24 +25,25 @@ public class ProcessInput extends RenderCamera {
 	boolean pause = false;
 	boolean controlls = false;
 	Meni m;
-	Text gradLife;
-	Text level;
-	
-	Text meni;
-	Text meniItem1;
-	Text meniItem2;
-	Text meniItem3;
-	Text meniItem4;
-	
-	Text controlHead;
-	Text controlItem1;
-	Text controlItem2;
-	Text controlItem3;
-	Text controlItem4;
-	Text controlItem5;
-	Text controlItem6;
-	Text controlItem7;
-	Text controlBack;
+	public Text gradLife;
+	public Text level;
+
+	public Text meni;
+	public Text meniItem1;
+	public Text meniItem2;
+	public Text meniItem3;
+	public Text meniItem4;
+
+	public Text controlHead;
+	public Text controlItem1;
+	public Text controlItem2;
+	public Text controlItem3;
+	public Text controlItem4;
+	public Text controlItem5;
+	public Text controlItem6;
+	public Text controlItem7;
+	public Text controlBack;
+
 	// hide the mouse
 
 	/**
@@ -52,16 +51,16 @@ public class ProcessInput extends RenderCamera {
 	 */
 	protected void setupView() {
 		// text = new Text("Testni izpis", 50);
-		
+
 		gradLife = new Text("", 20);
 		level = new Text("", 20);
-		
+
 		meni = new Text("Meni", 50);
 		meniItem1 = new Text("[1] Resume game", 40);
 		meniItem2 = new Text("[2] Restart game", 40);
 		meniItem3 = new Text("[3] Controlls", 40);
 		meniItem4 = new Text("[4] Exit", 40);
-		
+
 		controlHead = new Text("Controlls", 50);
 		controlItem1 = new Text("W - forward", 40);
 		controlItem2 = new Text("S - backward", 40);
@@ -71,7 +70,7 @@ public class ProcessInput extends RenderCamera {
 		controlItem6 = new Text("1 - weapon: sword", 40);
 		controlItem7 = new Text("2 - weapon: bow", 40);
 		controlBack = new Text("[5] Back", 40);
-		
+
 		super.setupView();
 
 	}
@@ -80,86 +79,77 @@ public class ProcessInput extends RenderCamera {
 	 * Renders current frame
 	 */
 	protected void renderFrame(long delta) {
-		
-		
 
-		
 		physics.checkCollisions(gameobjects, camera);
 
 		super.renderFrame(delta);
 
 		/*
-		text = new BitmapText();
-		String napis = "abcDDQ";
-		//startHUD();
+		 * text = new BitmapText(); String napis = "abcDDQ"; //startHUD();
+		 * 
+		 * GL11.glColor4f(0, 1, 0, 1); float w = text.textWidth(napis, 15);
+		 * GL11.glTranslatef(1024 - w, 768 - 20, 0); text.renderString(napis,
+		 * 15);
+		 * 
+		 * //endHUD();
+		 */
 
-		GL11.glColor4f(0, 1, 0, 1);
-		float w = text.textWidth(napis, 15);
-		GL11.glTranslatef(1024 - w, 768 - 20, 0);
-		text.renderString(napis, 15);
+		startHUD();
 
-		//endHUD();
-*/
-		
-		 	startHUD();
-		 	
-		 	gradLife.setContent("Castle: " + Integer.toString(camera.castleLife));
-		    gradLife.setPosition(width - 150, height - 30,0);
-		    gradLife.render3D();
-		    
-		    level.setContent("Level: " + Integer.toString(game.level));
-		    level.setPosition(10, height - 30, 0);
-		    level.render3D();
-		    
-		    if(pause && !controlls) {
-			    meni.setPosition(50, height - 100, 0);
-			    meni.render3D();
-			    
-			    meniItem1.setPosition(50, height - 180, 0);
-			    meniItem1.render3D();
-			    
-			    meniItem2.setPosition(50, height - 250, 0);
-			    meniItem2.render3D();
-			    
-			    meniItem3.setPosition(50, height - 320, 0);
-			    meniItem3.render3D();
-			    
-			    meniItem4.setPosition(50, height - 390, 0);
-			    meniItem4.render3D();
-		    }else if(pause && controlls) {
-		    	controlHead.setPosition(50, height - 100, 0);
-			    controlHead.render3D();
-			    
-			    controlItem1.setPosition(50, height - 180, 0);
-			    controlItem1.render3D();
-			    
-			    controlItem2.setPosition(50, height - 250, 0);
-			    controlItem2.render3D();
-			    
-			    controlItem3.setPosition(50, height - 320, 0);
-			    controlItem3.render3D();
-			    
-			    controlItem4.setPosition(50, height - 390, 0);
-			    controlItem4.render3D();
-			    
-			    controlItem5.setPosition(50, height - 460, 0);
-			    controlItem5.render3D();
-			    
-			    controlItem6.setPosition(50, height - 530, 0);
-			    controlItem6.render3D();
-			    
-			    controlItem7.setPosition(50, height - 600, 0);
-			    controlItem7.render3D();
-			    
-			    controlBack.setPosition(50, height - 670, 0);
-			    controlBack.render3D();
-		    }
-		    
-		    endHUD();
-			
-		
-		
-		
+		gradLife.setContent("Castle: " + Integer.toString(camera.castleLife));
+		gradLife.setPosition(width - 150, height - 30, 0);
+		gradLife.render3D();
+
+		level.setContent("Level: " + Integer.toString(game.level));
+		level.setPosition(10, height - 30, 0);
+		level.render3D();
+
+		if (pause && !controlls) {
+			meni.setPosition(50, height - 100, 0);
+			meni.render3D();
+
+			meniItem1.setPosition(50, height - 180, 0);
+			meniItem1.render3D();
+
+			meniItem2.setPosition(50, height - 250, 0);
+			meniItem2.render3D();
+
+			meniItem3.setPosition(50, height - 320, 0);
+			meniItem3.render3D();
+
+			meniItem4.setPosition(50, height - 390, 0);
+			meniItem4.render3D();
+		} else if (pause && controlls) {
+			controlHead.setPosition(50, height - 100, 0);
+			controlHead.render3D();
+
+			controlItem1.setPosition(50, height - 180, 0);
+			controlItem1.render3D();
+
+			controlItem2.setPosition(50, height - 250, 0);
+			controlItem2.render3D();
+
+			controlItem3.setPosition(50, height - 320, 0);
+			controlItem3.render3D();
+
+			controlItem4.setPosition(50, height - 390, 0);
+			controlItem4.render3D();
+
+			controlItem5.setPosition(50, height - 460, 0);
+			controlItem5.render3D();
+
+			controlItem6.setPosition(50, height - 530, 0);
+			controlItem6.render3D();
+
+			controlItem7.setPosition(50, height - 600, 0);
+			controlItem7.render3D();
+
+			controlBack.setPosition(50, height - 670, 0);
+			controlBack.render3D();
+		}
+
+		endHUD();
+
 	}
 
 	protected boolean checkPlayerCollision(double newX, double newZ) {
@@ -200,15 +190,17 @@ public class ProcessInput extends RenderCamera {
 	/**
 	 * Processes Keyboard and Mouse input and spawns actions
 	 */
-	protected void processInput() {
+	protected void processInput(long delta) {
 		if (!pause) {
 			
 			// keep looping till the display window is closed the ESC key is
 			// down
-			time = System.currentTimeMillis();
-			dt = (time - lastTime) / 1000.0f;
-			lastTime = time;
-			dt = 0.01f;
+
+			// time = System.currentTimeMillis();
+			// dt = (time - lastTime) / 1000.0f;
+			// lastTime = time;
+			// dt = 0.01f;
+
 			// distance in mouse movement from the last getDX() call.
 			dx = Mouse.getDX();
 			// distance in mouse movement from the last getDY() call.
@@ -338,15 +330,15 @@ public class ProcessInput extends RenderCamera {
 					camera.lok = true;
 				}
 			}
-			
+
 			if (Keyboard.isKeyDown(Keyboard.KEY_1))// move forward
 			{
-					camera.lok = false;
+				camera.lok = false;
 			}
-			
+
 			if (Keyboard.isKeyDown(Keyboard.KEY_2))// move forward
 			{
-					camera.lok = true;
+				camera.lok = true;
 			}
 
 			// float xP = camera.getPosition().x;
@@ -355,63 +347,65 @@ public class ProcessInput extends RenderCamera {
 			if (Keyboard.isKeyDown(Keyboard.KEY_W))// move forward
 			{
 				if (!checkPlayerCollision(
-						camera.tryXForward(movementSpeed * dt),
-						camera.tryZForward(movementSpeed * dt))) {
-					camera.walkForward(movementSpeed * dt);
+						camera.tryXForward(movementSpeed * delta),
+						camera.tryZForward(movementSpeed * delta))) {
+					camera.walkForward(movementSpeed * delta);
 
 				}
 			}
 			if (Keyboard.isKeyDown(Keyboard.KEY_S))// move backwards
 			{
 				if (!checkPlayerCollision(
-						camera.tryXBackwards(movementSpeed * dt),
-						camera.tryZBackwards(movementSpeed * dt))) {
-					camera.walkBackwards(movementSpeed * dt);
+						camera.tryXBackwards(movementSpeed * delta),
+						camera.tryZBackwards(movementSpeed * delta))) {
+					camera.walkBackwards(movementSpeed * delta);
 
 				}
 			}
 			if (Keyboard.isKeyDown(Keyboard.KEY_A))// strafe left
 			{
-				if (!checkPlayerCollision(camera.tryXLeft(movementSpeed * dt),
-						camera.tryZLeft(movementSpeed * dt))) {
-					camera.strafeLeft(movementSpeed * dt);
+				if (!checkPlayerCollision(
+						camera.tryXLeft(movementSpeed * delta),
+						camera.tryZLeft(movementSpeed * delta))) {
+					camera.strafeLeft(movementSpeed * delta);
 
 				}
 			}
 			if (Keyboard.isKeyDown(Keyboard.KEY_D))// strafe right
 			{
-				if (!checkPlayerCollision(camera.tryXRight(movementSpeed * dt),
-						camera.tryZRight(movementSpeed * dt))) {
-					camera.strafeRight(movementSpeed * dt);
+				if (!checkPlayerCollision(
+						camera.tryXRight(movementSpeed * delta),
+						camera.tryZRight(movementSpeed * delta))) {
+					camera.strafeRight(movementSpeed * delta);
 
 				}
 			}
 
-		}else if(pause && !controlls) {
-			
+		} else if (pause && !controlls) {
+
 			if (Keyboard.isKeyDown(Keyboard.KEY_1)) {
 				pause = false;
 				for (GameObject go : gameobjects) {
 					go.moving = true;
 				}
 			}
-			
+
 			if (Keyboard.isKeyDown(Keyboard.KEY_2)) {
 				Display.destroy();
 				(new ProcessInput()).execute();
 			}
-			
-			if(Keyboard.isKeyDown(Keyboard.KEY_3)) {
+
+			if (Keyboard.isKeyDown(Keyboard.KEY_3)) {
 				controlls = true;
 			}
-			
-			if(Keyboard.isKeyDown(Keyboard.KEY_4)) {
+
+			if (Keyboard.isKeyDown(Keyboard.KEY_4)) {
 				isRunning = false;
 			}
 		}
-		
-		if(pause && controlls) {
-			if(Keyboard.isKeyDown(Keyboard.KEY_5)) {
+
+		if (pause && controlls) {
+			if (Keyboard.isKeyDown(Keyboard.KEY_5)) {
 				controlls = false;
 			}
 		}
@@ -425,29 +419,30 @@ public class ProcessInput extends RenderCamera {
 
 		}
 
+		super.processInput(delta);
 	}
 
 	protected void startHUD() {
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glPushMatrix();
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, 1024, 0, 768, -1, 1); //TODO POPRAVIT DA JE SPREMENLJIVO
+		GL11.glOrtho(0, 1024, 0, 768, -1, 1); // TODO POPRAVIT DA JE
+												// SPREMENLJIVO
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glPushMatrix();
 		GL11.glLoadIdentity();
-//		GL11.glDisable(GL11.GL_DEPTH_TEST);
-//		GL11.glDisable(GL11.GL_LIGHTING);
-		
+		// GL11.glDisable(GL11.GL_DEPTH_TEST);
+		// GL11.glDisable(GL11.GL_LIGHTING);
+
 	}
 
 	protected void endHUD() {
-//		GL11.glEnable(GL11.GL_DEPTH_TEST);
-//		GL11.glEnable(GL11.GL_LIGHTING);
+		// GL11.glEnable(GL11.GL_DEPTH_TEST);
+		// GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glPopMatrix();
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glPopMatrix();
-		
 
 	}
 

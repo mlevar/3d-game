@@ -17,7 +17,7 @@ public class Medved extends GameObject {
 
 		this.scale = scale;
 		model = mModel;
-
+		this.health=8;
 		this.delay = (float) delay * 1000;
 
 		super.setRadius(scale * 1.4f);
