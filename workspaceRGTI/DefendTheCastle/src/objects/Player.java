@@ -199,22 +199,11 @@ public class Player {
 			bow.render3D();
 			
 			//arrow.setPosition(0.2f, -0.11f, -1.6f);
+			
 			if(!puscicaIzstreljena) {
 				arrow.setPosition(0.055f, -0.11f, -1.645f);
 				arrow.setRotation(0, -7, 0);
 				arrow.render3D();
-			}else {
-				smerPuscice.x = smerPuscice.x * 1.2f;
-				smerPuscice.y = smerPuscice.y * 1.2f;
-				smerPuscice.z = smerPuscice.z * 1.2f;
-				if(smerPuscice.x > 70 || smerPuscice.x < -70 || smerPuscice.y > 70 || smerPuscice.y < -1 || smerPuscice.z > 250 || smerPuscice.z < -30) {
-					puscicaIzstreljena = false;
-				}
-				puscica.setPosition(smerPuscice.x, smerPuscice.y, smerPuscice.z);
-				
-				puscica.setRotation(0, -7, 0);
-				puscica.render3D();
-				
 			}
 			
 			//cross

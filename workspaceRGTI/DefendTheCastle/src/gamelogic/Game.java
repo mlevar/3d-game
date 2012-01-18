@@ -1,10 +1,13 @@
 package gamelogic;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import objects.GameObject;
 import objects.Kura;
 import objects.Medved;
 import objects.Merjasec;
 import objects.Obj3D;
+import objects.Puscica;
 
 public class Game {
 
@@ -16,6 +19,10 @@ public class Game {
 	public Obj3D kuraModel;
 	public Obj3D merjasecModel;
 	public Obj3D medvedModel;
+	
+	public Obj3D letecaPuscica;
+	public Vector3f smerLetecePuscice;
+	boolean leti = false;
 
 	public Game() {
 		this.level = 1;
@@ -25,7 +32,10 @@ public class Game {
 		kuraModel = new Obj3D("kura.obj");
 		merjasecModel = new Obj3D("merjasec.obj");
 		medvedModel = new Obj3D("medved.obj");
-
+		
+		letecaPuscica = new Obj3D("puscica.obj");
+		smerLetecePuscice = new Vector3f(-1f, -1f, -1f);
+		
 		createLevels();
 
 	}
@@ -41,13 +51,14 @@ public class Game {
 	}
 
 	public GameObject[] level1() {
-		GameObject[] l = new GameObject[50];
+		//GameObject[] l = new GameObject[50];
+		GameObject[] l = new GameObject[10];
 
 		for (int i = 0; i < l.length; i++) {
 			l[i] = new Kura(-25 + (i % 10) * 5f, -3f, -300f, kuraModel, 2,
 					0.1f * i);
 		}
-
+		
 		return l;
 	}
 

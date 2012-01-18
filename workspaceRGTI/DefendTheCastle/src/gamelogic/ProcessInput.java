@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import objects.GameObject;
+import objects.Okolje;
 import objects.Player;
 import objects.Puscica;
 
@@ -200,8 +201,8 @@ public class ProcessInput extends RenderCamera {
 	 * Processes Keyboard and Mouse input and spawns actions
 	 */
 	protected void processInput() {
-
 		if (!pause) {
+			
 			// keep looping till the display window is closed the ESC key is
 			// down
 			time = System.currentTimeMillis();
@@ -218,6 +219,7 @@ public class ProcessInput extends RenderCamera {
 			// controll camera pitch from y movement fromt the mouse
 			camera.pitch(dy * mouseSensitivity);
 
+			camera.puscicaIzstreljena = pu.leti;
 			// when passing in the distance to move
 			// we times the movementSpeed with dt this is a time scale
 			// so if its a slow frame u move more then a fast frame
@@ -239,22 +241,62 @@ public class ProcessInput extends RenderCamera {
 			 * strafe right { camera.strafeRight(movementSpeed * dt);
 			 * System.out.println("x: " + xP + " -- Z: " + zP); }
 			 */
+			
+			
+			//start testing look vector
+			/*
+			float toRad1 = (float) Math.PI / 180;
+			float yaw1 = camera.getYaw() * toRad1;
+			float pitch1 = camera.getPitch() * toRad1;
 
+			float xl1 = (float) Math.cos(yaw1);
+			float zl1 = (float) Math.sin(yaw1);
+			float yl1 = (float) Math.tan(pitch1) * zl1;
+
+			float l1 = (float) Math.sqrt((xl1 * xl1) + (yl1 * yl1) + (zl1 * zl1));
+
+			Vector3f look1 = new Vector3f(-zl1 / l1, -yl1 / l1, -xl1 / l1);
+			//System.out.println(look1);
+			
+			
+			System.out.println("KAMERA: " + camera.position);
+			System.out.println("ZVAW: " + gameobjects[0].getPosition());
+			
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glColor3f(1, 1, 1);
+		    //GL11.glVertex3f( camera.position.x, camera.position.y + 1, camera.position.z);
+		    //GL11.glVertex3f( camera.position.x + 10, camera.position.y + 1, camera.position.z + 10);
+		    GL11.glVertex3f( 0f, 0.1f, -2f);
+		    GL11.glVertex3f( 0f, 0.3f, -5f);
+ 
+		    GL11.glEnd();
+			*/
+			//end testing look vector
+			//System.out.println(pu.leti);
 			if (Mouse.isButtonDown(0) && !camera.lok) {
 				camera.hit = true;
-			} else if (Mouse.isButtonDown(0) && !camera.puscicaIzstreljena) {
-				camera.puscicaIzstreljena = true;
+			} else if (Mouse.isButtonDown(0) && !(pu.leti)) {
+				//camera.puscicaIzstreljena = true;
 				float toRad = (float) Math.PI / 180;
 				float yaw = camera.getYaw() * toRad;
 				float pitch = camera.getPitch() * toRad;
 
-				float xl = (float) Math.cos(yaw);
-				float zl = (float) Math.sin(yaw);
-				float yl = (float) Math.tan(pitch) * zl;
-
+				float xl = (float) Math.sin(yaw);
+				float zl = (float) Math.cos(yaw);
+				//float yl = (float) Math.tan(pitch) * zl;
+				float yl = (float) Math.sin(pitch);
+				
 				float l = (float) Math.sqrt((xl * xl) + (yl * yl) + (zl * zl));
 
-				Vector3f look = new Vector3f(-zl / l, -yl / l, -xl / l);
+				Vector3f look = new Vector3f(-xl / l, -yl / l, -zl / l);
+				System.out.println("VEKTOR POGLEDA: " + look);
+				
+				//GL11.glBegin(GL11.GL_LINES);
+				//GL11.glColor3f(1, 1, 1);				
+			    //GL11.glVertex3f( -2.02f, 0f, -2.0f);
+			    //GL11.glVertex3f( -0.008f, 0f, -2.0f);
+			    //GL11.glEnd();
+				
 				float xx = look.x;
 				float yy = look.y;
 				float zz = look.z;
@@ -262,6 +304,18 @@ public class ProcessInput extends RenderCamera {
 				camera.smerPuscice.y = new Float(yy);
 				camera.smerPuscice.z = new Float(zz);
 				boolean hitten = physics.checkShoot(look, camera, gameobjects);
+				
+				pu.leti = true;
+				System.out.println("X: " + camera.getPosition().x + " Y: " + camera.getPosition().y + " Z: " + camera.getPosition().z);
+				//pu.setPosition(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
+				pu.setPosition(-camera.getPosition().x - 0.1f, -camera.getPosition().y, -camera.getPosition().z);
+				pu.setPozicijaKamere(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
+				pu.setSmerLeta(-look.x, look.y, look.z);
+				
+				pu.setRotacija((int)(-pitch * 57.29), (int)(-yaw * 57.29), 0);
+				System.err.println("Stopinj: " + (yaw * 57.29));
+				
+				
 				if (hitten) {
 					// System.out.println("ANIMAL DEAD");
 				} else {
@@ -371,19 +425,6 @@ public class ProcessInput extends RenderCamera {
 
 		}
 
-
-		
-
-		
-
-		
-		
-		
-		//startHUD();
-
-		//text.setPosition(10, 10, 0);
-		// text.render3D(); //ce odkomentiramo ne dela!!!
-		//endHUD();
 	}
 
 	protected void startHUD() {

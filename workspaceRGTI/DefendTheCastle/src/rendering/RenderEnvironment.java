@@ -11,6 +11,7 @@ import objects.*;
 public class RenderEnvironment extends BaseWindow {
 
 	Okolje okolje;
+	public Puscica pu;
 	
 
 	/**
@@ -39,6 +40,7 @@ public class RenderEnvironment extends BaseWindow {
 		
 		
 		okolje = new Okolje(0, 0, 0);
+		pu = new Puscica(0,0,0);
 		super.setupView();
 	}
 
@@ -59,6 +61,11 @@ public class RenderEnvironment extends BaseWindow {
 		GL11.glColor3f(1, 1, 1);
 
 		okolje.render();
+		if(pu.leti) {
+			
+			pu.render();
+			//System.out.println("puscica narisana");
+		}
 		
 		GL11.glEnd();
 		super.renderFrame(delta);

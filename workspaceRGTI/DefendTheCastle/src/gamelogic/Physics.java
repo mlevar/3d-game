@@ -111,14 +111,15 @@ public class Physics {
 			float dist = (float) Math.sqrt(Math.pow((-camPos.x - merPos.x), 2)
 					+ Math.pow((camPos.z + merPos.z), 2));
 			Vector3f vz = new Vector3f(-(v.x * dist + camPos.x) - 1, v.y * dist
-					+ camPos.y, v.z * dist - camPos.z);
+					-1.7f, v.z * dist - camPos.z);
 			// System.out.println("Pozicija cloveka: " + camPos);
 			// System.out.println("Pozicija zivali: " + merPos);
 			// System.out.println("Razdalja clovek - zival: " + dist);
 			// System.out.println("Vektor pogleda: " + v);
-			// System.out.println("Zracunan vektor: " + vz);
+			System.out.println("Zracunan vektor: " + vz);
+			System.out.println(gameobjects[0].getPosition());
 			float distCA = (float) Math.sqrt(Math.pow((vz.x - merPos.x), 2)
-					+ Math.pow((vz.y - merPos.y - 4.3), 2)
+					+ Math.pow((vz.y - merPos.y), 2)
 					+ Math.pow((vz.z - merPos.z), 2));
 			// System.out.println("Razdalja: " + distCA);
 			if (distCA < 1f) {
