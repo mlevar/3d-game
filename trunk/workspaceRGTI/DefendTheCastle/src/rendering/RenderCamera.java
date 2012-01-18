@@ -21,7 +21,7 @@ public class RenderCamera extends RenderObjects {
 	public float time = 0.0f;
 
 	public 	float mouseSensitivity = 0.05f;
-	public 	float movementSpeed = 10.0f; // move 10 units per second
+	public 	float movementSpeed = 0.015f;
 	
 	public int wheel = Mouse.getDWheel();
 
@@ -92,9 +92,9 @@ public class RenderCamera extends RenderObjects {
 	/**
 	 * Processes Keyboard and Mouse input and spawns actions
 	 */
-	protected void processInput() {
+	protected void processInput(long delta) {
 
-		super.processInput();
+		super.processInput(delta);
 	}
 
 	public static void main(String[] args) {

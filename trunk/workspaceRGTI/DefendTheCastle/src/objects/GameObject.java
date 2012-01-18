@@ -14,6 +14,7 @@ public abstract class GameObject {
 	protected Vector3f direction = new Vector3f(0, 0, 0);;
 
 	public boolean alive;
+	public int health;
 	public boolean moving;
 	public boolean delayed;
 	public boolean collision;

@@ -60,7 +60,7 @@ public class BaseWindow {
 			renderFrame(delta);
 
 			// process input events
-			processInput();
+			processInput(delta);
 
 			// update window contents and process input messages
 			Display.update();
@@ -93,7 +93,7 @@ public class BaseWindow {
 	 * Processes Keyboard and Mouse input and spawns actions
 	 */
 	
-	protected void processInput() {
+	protected void processInput(long delta) {
 		/*
 		if (Display.isCloseRequested()
 				|| Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {

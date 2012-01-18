@@ -105,7 +105,43 @@ public class Physics {
 	public boolean checkShoot(Vector3f v, Player camera,
 			GameObject[] gameobjects) {
 
-		Vector3f camPos = camera.getPosition();
+		Vector3f camPos = new Vector3f(camera.getPosition().x, camera.getPosition().y, camera.getPosition().z);
+				camera.getPosition();
+//		camPos.x *=-1;
+//		camPos.z *=-1;
+		GameObject closest = null;
+		for (int i = 0; i < gameobjects.length; i++) {
+			Vector3f merPos = gameobjects[i].getPosition();
+			float dist = (float) Math.sqrt(Math.pow((-camPos.x - merPos.x), 2)
+					+ Math.pow((camPos.z + merPos.z), 2));
+			Vector3f vz = new Vector3f(-(v.x * dist + camPos.x) , v.y * dist
+					+ camPos.y, v.z * dist - camPos.z);
+			// System.out.println("Pozicija cloveka: " + camPos);
+			// System.out.println("Pozicija zivali: " + merPos);
+			// System.out.println("Razdalja clovek - zival: " + dist);
+			// System.out.println("Vektor pogleda: " + v);
+			// System.out.println("Zracunan vektor: " + vz);
+			float distCA = (float) Math.sqrt(Math.pow((vz.x - merPos.x), 2)
+					+ Math.pow((vz.y - merPos.y - 4.3), 2)
+					+ Math.pow((vz.z - merPos.z), 2));
+			// System.out.println("Razdalja: " + distCA);
+			if (distCA < 1f) {
+				gameobjects[i].alive = false;
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public boolean checkSword(Vector3f v, Player camera,
+			GameObject[] gameobjects) {
+
+		Vector3f camPos = new Vector3f(camera.getPosition().x, camera.getPosition().y, camera.getPosition().z);
+				camera.getPosition();
+//		camPos.x *=-1;
+//		camPos.z *=-1;
+		GameObject closest = null;
 		for (int i = 0; i < gameobjects.length; i++) {
 			Vector3f merPos = gameobjects[i].getPosition();
 			float dist = (float) Math.sqrt(Math.pow((-camPos.x - merPos.x), 2)
@@ -130,7 +166,10 @@ public class Physics {
 
 		return false;
 	}
-
+	
+	
+	
+	
 	public void addObject(GameObject o) {
 		float[] f = o.getAABB();
 	}
