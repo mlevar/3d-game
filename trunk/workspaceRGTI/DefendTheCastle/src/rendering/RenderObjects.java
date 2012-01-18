@@ -38,7 +38,7 @@ public class RenderObjects extends RenderEnvironment {
 
 		game = new Game();
 		
-		gameobjects = game.level2();
+		gameobjects = game.level1();
 
 
 		super.setupView();
