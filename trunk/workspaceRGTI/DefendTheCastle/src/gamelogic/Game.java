@@ -47,15 +47,15 @@ public class Game {
 	public void createLevels() {
 		levels = new Object[5][];
 
-		levels[0] = level1();
+		levels[0] = level0();
 		levels[1] = level2();
-		levels[2] = level3();
+		levels[2] = level5();
 		levels[3] = level4();
 		levels[4] = level5();
 	}
 
 	public GameObject[] level0() {
-		GameObject[] l = new GameObject[1];
+		GameObject[] l = new GameObject[3];
 
 		for (int i = 0; i < l.length; i++) {
 			l[i] = new Kura(-25 + (i % 10) * 5f, -3f, -100f, kuraModel, 2,
@@ -150,6 +150,7 @@ public class Game {
 				l[i] = new Medved(0, -3f, -300f, medvedModel, 25, 15);
 				l[i].health = 300;
 				l[i].speed = 0.002f;
+				l[i].lowerHP=20;
 				continue;
 			}
 

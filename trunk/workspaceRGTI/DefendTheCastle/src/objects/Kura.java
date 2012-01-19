@@ -3,6 +3,8 @@ package objects;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
+import rendering.RenderObjects;
+
 public class Kura extends GameObject {
 
 	private Obj3D model;
@@ -63,10 +65,16 @@ public class Kura extends GameObject {
 			}
 
 			if (deltax == 0 && deltaz == 0) {
-				if(direction.z==50)
-					moving=false;
+				if(direction.z <8){
+					direction = new Vector3f(0, 0, 15);
+				}
+				else if (direction.z >28){
+					moving = false;
+					alive=false;
+					lowerHP=1;
+				}
 				else
-					direction = new Vector3f(0, 0, 50);
+					direction = new Vector3f(0, 0, 30);
 			}
 		}
 		render(delta);

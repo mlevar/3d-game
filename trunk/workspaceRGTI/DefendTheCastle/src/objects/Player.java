@@ -1,4 +1,5 @@
 package objects;
+
 import java.nio.IntBuffer;
 
 import org.lwjgl.opengl.GL11;
@@ -18,25 +19,23 @@ public class Player {
 	public boolean hit = false;
 	public int hitc = 0;
 	public boolean lok = false;
-	
-	public Vector3f heading = new Vector3f();
-	
-	
-	public boolean puscicaIzstreljena = false;
-	public Vector3f smerPuscice = new Vector3f(0,0,0);
-	
-	public int castleLife = 100;
-	
-	public Obj3D puscica;
-	
-	//public Vector3f cross = new Vector3f(0f,0f,1f);
 
-	
-	
+	public boolean hitend = false;
+
+	public Vector3f heading = new Vector3f();
+
+	public boolean puscicaIzstreljena = false;
+	public Vector3f smerPuscice = new Vector3f(0, 0, 0);
+
+	public int castleLife = 100;
+
+	public Obj3D puscica;
+
+	// public Vector3f cross = new Vector3f(0f,0f,1f);
 
 	// 3d vector to store the camera's position in
 	public Vector3f position = null;
-//	public Vector3f offset = new Vector3f(0.3f, -2.7f, -1f);
+	// public Vector3f offset = new Vector3f(0.3f, -2.7f, -1f);
 	// the rotation around the Y axis of the camera
 	private float yaw = 0.0f;
 	// the rotation around the X axis of the camera
@@ -56,13 +55,13 @@ public class Player {
 		// hand.setScaling(1f, 1f, 1f);
 		// hand.render3D();
 
-		//sword = new Obj3Dpivot("mec.obj");
+		// sword = new Obj3Dpivot("mec.obj");
 		sword = new Obj3Dpivot("mec.obj");
 		bow = new Obj3Dpivot("bow.obj");
 		arrow = new Obj3Dpivot("arrow.obj");
-		
+
 		puscica = new Obj3D("arrow.obj");
-		
+
 		// hand.setPosition(0.2f,-0.2f,-1.5f );
 		// sword.setPivot(offset.x,offset.y,offset.z);
 		// sword.setRotation(0, 0, 0);
@@ -145,10 +144,11 @@ public class Player {
 	public Vector3f getPosition() {
 		return position;
 	}
-	
+
 	public float getYaw() {
 		return yaw;
 	}
+
 	public float getPitch() {
 		return pitch;
 	}
@@ -166,71 +166,72 @@ public class Player {
 	}
 
 	public void render(float delta) {
-		
-		
 
 		if ((hit || hitc > 0) && !lok) {
 			GL11.glLoadIdentity();
 			hand.setPosition(0.2f, -0.2f, -1f);
-			hand.setRotation(0.5f * hitc+delta, 0, 0);
+			hand.setRotation(0.2f * hitc * delta, 0, 0);
 			hand.render3D();
 
-			sword.setPosition(0.2f, -0.15f, -1f);
-			sword.setRotation(0.5f * hitc+delta, 0, 0);
+			sword.setPosition(0.25f, -0.15f, -1f);
+			sword.setRotation(0.25f * hitc * delta, 0, 0);
 			sword.render3D();
 
-			hitc += 1;
-			if (hitc == 90)
+			hitc += 2;
+			if (hitc > 50)
 				hit = false;
 
-			if (!hit) {
-				hitc -= 3;
+			if (hitc < 40 && hitc > 36 && !hit){
+				hitend = true;
+				System.out.println("\nhitend "+hitc);
 			}
-			System.out.println(hitc);
-		}else if(lok) {
+			if (!hit) {
+				hitc -= 5;
+			}
+		} else if (lok) {
 			GL11.glLoadIdentity();
 
-			//hand.setPosition(0.2f, -0.2f, -1f);
+			// hand.setPosition(0.2f, -0.2f, -1f);
 			hand.setPosition(0.2f, -0.2f, -1f);
 			hand.setRotation(0, 0, 0);
 			hand.render3D();
-			
-			//bow.setPosition(0.2f, -0.15f, -1f);
+
+			// bow.setPosition(0.2f, -0.15f, -1f);
 			bow.setPosition(0.055f, -0.15f, -1.045f);
 			bow.setRotation(0, -7, 0);
 			bow.render3D();
-			
-			//arrow.setPosition(0.2f, -0.11f, -1.6f);
-			
-			if(!puscicaIzstreljena) {
+
+			// arrow.setPosition(0.2f, -0.11f, -1.6f);
+
+			if (!puscicaIzstreljena) {
 				arrow.setPosition(0.055f, -0.11f, -1.645f);
 				arrow.setRotation(0, -7, 0);
 				arrow.render3D();
 			}
-			
-			//cross
+
+			// cross
 			GL11.glBegin(GL11.GL_LINES);
 			GL11.glColor3f(1, 1, 1);
-			
-		    GL11.glVertex3f( -0.02f, 0f, -2.0f);
-		    GL11.glVertex3f( -0.008f, 0f, -2.0f);
-		    
-		    GL11.glVertex3f( 0.008f,  0f, -2.0f);
-		    GL11.glVertex3f( 0.02f,  0f, -2.0f);
-		    
-		    GL11.glVertex3f( 0f, 0.02f, -2.0f);
-		    GL11.glVertex3f( 0f, 0.008f, -2.0f);
-		    
-		    GL11.glVertex3f( 0f,  -0.008f, -2.0f);
-		    GL11.glVertex3f( 0f,  -0.02f, -2.0f);
-		    
-		    GL11.glEnd();
-		    
-		}else {
+
+			GL11.glVertex3f(-0.02f, 0f, -2.0f);
+			GL11.glVertex3f(-0.008f, 0f, -2.0f);
+
+			GL11.glVertex3f(0.008f, 0f, -2.0f);
+			GL11.glVertex3f(0.02f, 0f, -2.0f);
+
+			GL11.glVertex3f(0f, 0.02f, -2.0f);
+			GL11.glVertex3f(0f, 0.008f, -2.0f);
+
+			GL11.glVertex3f(0f, -0.008f, -2.0f);
+			GL11.glVertex3f(0f, -0.02f, -2.0f);
+
+			GL11.glEnd();
+
+		} else {
 			GL11.glLoadIdentity();
 			hand.setPosition(0.2f, -0.2f, -1f);
 			// hand.setPivot(offset.x,offset.y,offset.z);
-			 hand.setRotation(-40, 0, 0);
+			hand.setRotation(-40, 0, 0);
 			hand.setScaling(1f, 1f, 1f);
 			hand.render3D();
 
@@ -240,8 +241,8 @@ public class Player {
 			sword.setScaling(1f, 1f, 1f);
 			sword.render3D();
 		}
-		
-		//System.out.println(pitch);
+
+		// System.out.println(pitch);
 	}
 
 }
