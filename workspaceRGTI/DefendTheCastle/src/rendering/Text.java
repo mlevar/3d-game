@@ -56,7 +56,7 @@ public class Text extends Model3D
 
   private void renderModel()
   {
-    GL11.glColor3f(1, 0, 0);
+    //GL11.glColor3f(1, 0, 0);
     text.renderString(contentText, fontFize);
   }
 }

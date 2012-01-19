@@ -12,17 +12,13 @@ import org.lwjgl.util.vector.Vector3f;
 
 import objects.*;
 
-
 public class RenderObjects extends RenderEnvironment {
 
 	public int level = 1;
-	
+
 	public Physics physics = new Physics();
 	public Game game;
 	public GameObject[] gameobjects;
-
-
-
 
 	IntBuffer m_Textures;
 
@@ -35,11 +31,9 @@ public class RenderObjects extends RenderEnvironment {
 		GL11.glTexEnvf(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE,
 				GL11.GL_MODULATE);
 
-
 		game = new Game();
-		
-		gameobjects = game.level5();
 
+		gameobjects = (GameObject[]) game.levels[game.level - 1];
 
 		super.setupView();
 
@@ -54,31 +48,41 @@ public class RenderObjects extends RenderEnvironment {
 	 */
 	protected void renderFrame(long delta) {
 
-		
-	  
-		
 		GL11.glColor3f(1, 1, 1);
-		
-		
-		
+
 		for (int i = 0; i < gameobjects.length; i++) {
 			if (gameobjects[i].alive)
 				gameobjects[i].move(delta);
 			else if (gameobjects[i].delayed)
 				gameobjects[i].delay(delta);
 		}
-		
-		
+
+		boolean status = false;
+
+		for (int i = 0; i < gameobjects.length; i++) {
+			if (gameobjects[i].lowerHP > 0) {
+				game.castleHP -= gameobjects[i].lowerHP;
+				gameobjects[i].lowerHP = 0;
+				if(game.castleHP==0){
+					System.err.println("GAME OVER");
+				}
+			}
+			if (gameobjects[i].alive)
+				status = true;
+		}
+
+		if (status == false) {
+			System.err.println("NEXT LEVEL");
+			game.level += 1;
+			gameobjects = (GameObject[]) game.levels[game.level - 1];
+			
+			System.err.println(gameobjects.length);
+		}
 
 		GL11.glEnd();
 
 		super.renderFrame(delta);
-		
-		
-		
 
-		
-		
 	}
 
 	public static void main(String[] args) {

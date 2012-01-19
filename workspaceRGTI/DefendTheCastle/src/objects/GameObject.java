@@ -18,10 +18,13 @@ public abstract class GameObject {
 	public boolean moving;
 	public boolean delayed;
 	public boolean collision;
+	
+	public int lowerHP;
 
 	public GameObject(float x, float y, float z, float speed) {
 		this.position = new Vector3f(x, y, z);
-	
+		
+		this.lowerHP=0;
 		this.collision=false;
 		this.delayed=true;
 		this.alive = false;

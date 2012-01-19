@@ -57,11 +57,13 @@ public class Puscica {
 		//		position.z + 40.0f);
 		//field.setRotation(0, 0, 0);
 		//field.setScaling(scale, scale, scale);
-		puscicaModel.m_nX = puscicaModel.m_nX + (smerLeta.x * 2f);
-		puscicaModel.m_nY = puscicaModel.m_nY + (smerLeta.y * 2f);
-		puscicaModel.m_nZ = puscicaModel.m_nZ + (smerLeta.z * 2f);
+		puscicaModel.m_nX = puscicaModel.m_nX + (smerLeta.x * 1.3f);
+		puscicaModel.m_nY = puscicaModel.m_nY + (smerLeta.y * 1.3f);
+		puscicaModel.m_nZ = puscicaModel.m_nZ + (smerLeta.z * 1.3f);
 		
 		double razdaljaPuscicaKamera = Math.sqrt(Math.pow((pozicijaKamere.x - puscicaModel.m_nX),2) + Math.pow((pozicijaKamere.y - puscicaModel.m_nY),2) + Math.pow((pozicijaKamere.z - puscicaModel.m_nZ),2));
+				
+		
 		if(razdaljaPuscicaKamera > 60) {
 			leti = false;
 		}

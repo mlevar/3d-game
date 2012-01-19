@@ -63,13 +63,16 @@ public class Medved extends GameObject {
 			}
 
 			if (deltax == 0 && deltaz == 0) {
-				if (direction.z == 50){
-//					moving = false;
-				alive=false;
-				}else if (direction.z - position.z>4){
-					direction = new Vector3f(0,0,0);
-				}else
-					direction = new Vector3f(0, 0, 50);
+				if(direction.z < 8){
+					direction = new Vector3f(0, 0, 15);
+				}
+				else if (direction.z >28){
+					moving = false;
+					alive=false;
+					lowerHP=4;
+				}
+				else
+					direction = new Vector3f(0, 0, 30);
 			}
 
 		}
