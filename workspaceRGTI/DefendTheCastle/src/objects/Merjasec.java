@@ -17,7 +17,7 @@ public class Merjasec extends GameObject {
 
 		this.scale = scale;
 		model = mModel;
-		this.health=4;
+		this.health = 4;
 		this.delay = (float) delay * 1000;
 
 		super.setRadius(1f * scale);
@@ -42,10 +42,7 @@ public class Merjasec extends GameObject {
 			if (0.2 > Math.abs(position.z - direction.z)) {
 				deltaz = 0;
 			}
-			if (collision) {
-				deltax *= (int) Math.random() * 1.99 - 0.5;
-				deltaz *= (int) Math.random() * 1.99 - 0.5;
-			}
+
 
 			angle = (float) (Math.atan(Math.abs(position.x - direction.x)
 					/ Math.abs(position.z - direction.z)) * 180 / Math.PI);
@@ -64,15 +61,13 @@ public class Merjasec extends GameObject {
 			}
 
 			if (deltax == 0 && deltaz == 0) {
-				if(direction.z < 8){
+				if (direction.z < 8) {
 					direction = new Vector3f(0, 0, 15);
-				}
-				else if (direction.z >28){
+				} else if (direction.z > 28) {
 					moving = false;
-					alive=false;
-					lowerHP=2;
-				}
-				else
+					alive = false;
+					lowerHP = 2;
+				} else
 					direction = new Vector3f(0, 0, 30);
 			}
 
@@ -97,7 +92,7 @@ public class Merjasec extends GameObject {
 		model.setRotation(0, angle, 0);
 		model.setScaling(scale, scale, scale);
 		model.render3D();
-		
+
 	}
 
 }

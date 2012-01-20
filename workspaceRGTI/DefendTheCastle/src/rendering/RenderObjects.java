@@ -63,20 +63,16 @@ public class RenderObjects extends RenderEnvironment {
 			if (gameobjects[i].lowerHP > 0) {
 				game.castleHP -= gameobjects[i].lowerHP;
 				gameobjects[i].lowerHP = 0;
-				if(game.castleHP==0){
-					System.err.println("GAME OVER");
-				}
+
 			}
-			if (gameobjects[i].alive)
+			if (gameobjects[i].alive || gameobjects[i].delayed )
 				status = true;
 		}
 
 		if (status == false) {
-			System.err.println("NEXT LEVEL");
 			game.level += 1;
 			gameobjects = (GameObject[]) game.levels[game.level - 1];
-			
-			System.err.println(gameobjects.length);
+	
 		}
 
 		GL11.glEnd();

@@ -27,7 +27,7 @@ public class Physics {
 
 	public boolean checkCollisions(GameObject[] gameobjects, Player p) {
 
-		for (int i = 0; i < gameobjects.length - 1; i++) {
+		for (int i = 0; i < gameobjects.length; i++) {
 			if (gameobjects[i].alive == true) {
 
 				if (checkCollisionPlayer(p, gameobjects[i])) {
@@ -42,6 +42,10 @@ public class Physics {
 								- s * 0.4f);
 
 				}
+			}
+		}
+		for (int i = 0; i < gameobjects.length - 1; i++) {
+			if (gameobjects[i].alive == true) {
 
 				for (int j = i + 1; j < gameobjects.length; j++) {
 					if (gameobjects[j].alive == true) {
@@ -55,7 +59,7 @@ public class Physics {
 
 							Vector3f c = gameobjects[i].getPosition();
 							float s = gameobjects[i].radius;
-
+	
 							if (gameobjects[i].getPosition().x < gameobjects[j]
 									.getPosition().x)
 
@@ -150,7 +154,7 @@ public class Physics {
 			Vector3f merPos = gameobjects[i].getPosition();
 			float dist = (float) Math.sqrt(Math.pow((-camPos.x - merPos.x), 2)
 					+ Math.pow((camPos.z + merPos.z), 2));
-			if (dist > 3) {
+			if (dist > 5) {
 				continue;
 			}
 			Vector3f vz = new Vector3f(-(v.x * dist + camPos.x), v.y * dist
@@ -160,6 +164,7 @@ public class Physics {
 					+ Math.pow((vz.z - merPos.z), 2));
 			if (distCA < gameobjects[i].radius * 3.5f) {
 				gameobjects[i].health -= 2;
+				System.out.println(gameobjects[i].health);
 				if (gameobjects[i].health <= 0) {
 					gameobjects[i].alive = false;
 					gameobjects[i].moving = false;
@@ -168,82 +173,6 @@ public class Physics {
 			}
 		}
 
-		/*
-		 * Vector3f ppos = new Vector3f(camera.getPosition()); ppos.x *= -1;
-		 * ppos.y *= -1; ppos.z *= -1;
-		 * 
-		 * for (int i = 0; i < gameobjects.length; i++) { if
-		 * (!gameobjects[i].alive) continue; Vector3f merPos =
-		 * gameobjects[i].getPosition(); float dist = (float)
-		 * Math.sqrt(Math.pow((ppos.x - merPos.x), 2) + Math.pow((ppos.z -
-		 * merPos.z), 2));
-		 * 
-		 * System.out.println("I: " + i + "  dist: " + dist);
-		 * System.err.println(gameobjects.length); if (dist > 3) continue; else
-		 * {
-		 * 
-		 * gameobjects[i].health -= 2; System.out.println("HP: " + i + ", " +
-		 * gameobjects[i].health); if (gameobjects[i].health <= 0)
-		 * gameobjects[i].alive = false;
-		 * 
-		 * }
-		 * 
-		 * }
-		 * 
-		 * /* Vector3f camPos = new Vector3f(camera.getPosition().x,
-		 * camera.getPosition().y, camera.getPosition().z);
-		 * camera.getPosition(); // camPos.x *=-1; // camPos.z *=-1; GameObject
-		 * closest = null; for (int i = 0; i < gameobjects.length; i++) {
-		 * Vector3f merPos = gameobjects[i].getPosition(); float dist = (float)
-		 * Math.sqrt(Math.pow((-camPos.x - merPos.x), 2) + Math.pow((camPos.z +
-		 * merPos.z), 2)); System.out.println(dist); if (dist > 3) return false;
-		 * 
-		 * Vector3f vz = new Vector3f(-(v.x * dist + camPos.x), v.y * dist -
-		 * 1.7f, v.z * dist - camPos.z); //
-		 * System.out.println("Pozicija cloveka: " + camPos); //
-		 * System.out.println("Pozicija zivali: " + merPos); //
-		 * System.out.println("Razdalja clovek - zival: " + dist); //
-		 * System.out.println("Vektor pogleda: " + v);
-		 * System.out.println("Zracunan vektor: " + vz);
-		 * System.out.println(gameobjects[0].getPosition()); float distCA =
-		 * (float) Math.sqrt(Math.pow((vz.x - merPos.x), 2) + Math.pow((vz.y -
-		 * merPos.y), 2) + Math.pow((vz.z - merPos.z), 2)); if (distCA <
-		 * gameobjects[i].radius * 1.5f) {
-		 * 
-		 * gameobjects[i].health -= 2; System.out.println("HP: "+i+", "
-		 * +gameobjects[i].health); if (gameobjects[i].health <= 0)
-		 * gameobjects[i].alive = false; return true; }
-		 * 
-		 * }
-		 * 
-		 * /*
-		 * 
-		 * 
-		 * Vector3f camPos = new Vector3f(camera.getPosition().x,
-		 * camera.getPosition().y, camera.getPosition().z);
-		 * camera.getPosition();
-		 * 
-		 * GameObject closest = null; for (int i = 0; i < gameobjects.length;
-		 * i++) { Vector3f merPos = gameobjects[i].getPosition(); float dist =
-		 * (float) Math.sqrt(Math.pow((-camPos.x - merPos.x), 2) +
-		 * Math.pow((camPos.z + merPos.z), 2));
-		 * 
-		 * if(dist>3) return false; else{ gameobjects[i].health-=2;
-		 * System.out.println(gameobjects[i].health);
-		 * if(gameobjects[i].health<=0) gameobjects[i].alive = false; return
-		 * true; } /* Vector3f vz = new Vector3f(-(v.x * dist + camPos.x), v.y *
-		 * dist + camPos.y, v.z * dist - camPos.z); //
-		 * System.out.println("Pozicija cloveka: " + camPos); //
-		 * System.out.println("Pozicija zivali: " + merPos); //
-		 * System.out.println("Razdalja clovek - zival: " + dist); //
-		 * System.out.println("Vektor pogleda: " + v); //
-		 * System.out.println("Zracunan vektor: " + vz); float distCA = (float)
-		 * Math.sqrt(Math.pow((vz.x - merPos.x), 2) + Math.pow((vz.y - merPos.y
-		 * - 4.3), 2) + Math.pow((vz.z - merPos.z), 2)); //
-		 * System.out.println("Razdalja: " + distCA); if (distCA < 1f) {
-		 * gameobjects[i].health-=2; if(gameobjects[i].health<=0)
-		 * gameobjects[i].alive = false; return true; } }
-		 */
 		return false;
 	}
 
