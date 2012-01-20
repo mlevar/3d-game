@@ -13,11 +13,11 @@ public class Medved extends GameObject {
 
 	public Medved(float x, float y, float z, Obj3D mModel, float scale,
 			float delay) {
-		super(x, y, z, 0.004f); //0.004
+		super(x, y, z, 0.004f); // 0.004
 
 		this.scale = scale;
 		model = mModel;
-		this.health=8;
+		this.health = 8;
 		this.delay = (float) delay * 1000;
 
 		super.setRadius(scale * 1.4f);
@@ -34,20 +34,16 @@ public class Medved extends GameObject {
 					/ h;
 			float deltaz = delta * speed * Math.abs(position.z - direction.z)
 					/ h;
-			if (1.3 > Math.abs(position.x - direction.x)) {
+			if (0.4 > Math.abs(position.x - direction.x)) {
 				deltax = 0;
 			}
-			if (1.3 > Math.abs(position.z - direction.z)) {
+			if (0.4 > Math.abs(position.z - direction.z)) {
 				deltaz = 0;
 			}
 
 			angle = (float) (Math.atan(Math.abs(position.x - direction.x)
 					/ Math.abs(position.z - direction.z)) * 180 / Math.PI);
 
-			if (collision) {
-				deltax *= (int) Math.random() * 1.99 - 0.5;
-				deltaz *= (int) Math.random() * 1.99 - 0.5;
-			}
 
 			if (position.x > direction.x) {
 				position.x -= deltax;
@@ -63,23 +59,19 @@ public class Medved extends GameObject {
 			}
 
 			if (deltax == 0 && deltaz == 0) {
-				if(direction.z < 8){
+				if (direction.z < 8) {
 					direction = new Vector3f(0, 0, 15);
-				}
-				else if (direction.z >28){
+				} else if (direction.z > 28) {
 					moving = false;
-					alive=false;
-					lowerHP=4;
-				}
-				else
+					alive = false;
+					lowerHP = 4;
+				} else
 					direction = new Vector3f(0, 0, 30);
 			}
 
 		}
 		render(delta);
 	}
-
-
 
 	public void delay(long delta) {
 		this.delay -= delta;
@@ -98,7 +90,7 @@ public class Medved extends GameObject {
 		model.setRotation(0, angle, 0);
 		model.setScaling(scale, scale, scale);
 		model.render3D();
-		
+
 	}
 
 }

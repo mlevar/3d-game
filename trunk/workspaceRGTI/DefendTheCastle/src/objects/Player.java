@@ -60,7 +60,7 @@ public class Player {
 		bow = new Obj3Dpivot("bow.obj");
 		arrow = new Obj3Dpivot("arrow.obj");
 
-		puscica = new Obj3D("arrow.obj");
+		//puscica = new Obj3D("arrow.obj");
 
 		// hand.setPosition(0.2f,-0.2f,-1.5f );
 		// sword.setPivot(offset.x,offset.y,offset.z);
@@ -183,7 +183,7 @@ public class Player {
 
 			if (hitc < 40 && hitc > 36 && !hit){
 				hitend = true;
-				System.out.println("\nhitend "+hitc);
+//				System.out.println("\nhitend "+hitc);
 			}
 			if (!hit) {
 				hitc -= 5;

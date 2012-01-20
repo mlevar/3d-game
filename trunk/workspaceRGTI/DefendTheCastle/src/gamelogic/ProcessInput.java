@@ -315,9 +315,9 @@ public class ProcessInput extends RenderCamera {
 				boolean hitten = physics.checkShoot(look, camera, gameobjects);
 
 				pu.leti = true;
-				System.out.println("X: " + camera.getPosition().x + " Y: "
-						+ camera.getPosition().y + " Z: "
-						+ camera.getPosition().z);
+//				System.out.println("X: " + camera.getPosition().x + " Y: "
+//						+ camera.getPosition().y + " Z: "
+//						+ camera.getPosition().z);
 				// pu.setPosition(-camera.getPosition().x,
 				// -camera.getPosition().y, -camera.getPosition().z);
 				pu.setPosition(-camera.getPosition().x + 0.05f,
